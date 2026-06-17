@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindScape — Discover Your True Self</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ====================================================
+   RESET
+==================================================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ====================================================
+   CSS VARIABLES — DARK COOL (DEFAULT)
+==================================================== */
+:root{
+  --bg:#07070f;--bg2:#0d0d1a;--card:#111120;--card2:#181830;
+  --border:rgba(255,255,255,0.07);--border-h:rgba(255,255,255,0.18);
+  --text:#f0f0ff;--muted:#8080aa;--dim:#404060;
+  --hover-bg:rgba(255,255,255,0.04);
+  --r:18px;--t:all 0.28s ease;
+  --a1:#a78bfa;--a2:#38bdf8;
+  --logo-g:linear-gradient(135deg,#a78bfa,#38bdf8);
+  --hero-glow:rgba(139,92,246,0.12);
+  --eyebrow-bg:rgba(139,92,246,0.08);--eyebrow-border:rgba(139,92,246,0.3);--eyebrow-c:#a78bfa;
+  --nav-bg:rgba(7,7,15,0.9);--nav-border:rgba(255,255,255,0.07);
+  --scroll-thumb:rgba(255,255,255,0.1);
+  --ai-border:rgba(139,92,246,0.25);
+  --ai-bg:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(56,189,248,0.08));
+}
+/* LIGHT COOL */
+body.theme-lc{
+  --bg:#f0f4ff;--bg2:#e8edff;--card:#ffffff;--card2:#f0f4ff;
+  --border:rgba(99,102,241,0.14);--border-h:rgba(99,102,241,0.35);
+  --text:#1e1b4b;--muted:#5b5880;--dim:#9090bb;
+  --hover-bg:rgba(99,102,241,0.05);
+  --a1:#7c3aed;--a2:#0284c7;
+  --logo-g:linear-gradient(135deg,#7c3aed,#0284c7);
+  --hero-glow:rgba(99,102,241,0.1);
+  --eyebrow-bg:rgba(99,102,241,0.08);--eyebrow-border:rgba(99,102,241,0.26);--eyebrow-c:#7c3aed;
+  --nav-bg:rgba(240,244,255,0.94);--nav-border:rgba(99,102,241,0.14);
+  --scroll-thumb:rgba(99,102,241,0.2);
+  --ai-border:rgba(99,102,241,0.22);
+  --ai-bg:linear-gradient(135deg,rgba(99,102,241,0.07),rgba(2,132,199,0.07));
+}
+/* DARK WARM */
+body.theme-dw{
+  --bg:#0f0906;--bg2:#1a120a;--card:#201610;--card2:#2a1e14;
+  --border:rgba(251,146,60,0.09);--border-h:rgba(251,146,60,0.28);
+  --text:#fff5ee;--muted:#c49a7a;--dim:#7a5040;
+  --hover-bg:rgba(251,146,60,0.05);
+  --a1:#fb923c;--a2:#f43f5e;
+  --logo-g:linear-gradient(135deg,#fb923c,#f43f5e);
+  --hero-glow:rgba(249,115,22,0.14);
+  --eyebrow-bg:rgba(249,115,22,0.09);--eyebrow-border:rgba(249,115,22,0.32);--eyebrow-c:#fb923c;
+  --nav-bg:rgba(15,9,6,0.92);--nav-border:rgba(251,146,60,0.09);
+  --scroll-thumb:rgba(251,146,60,0.15);
+  --ai-border:rgba(249,115,22,0.23);
+  --ai-bg:linear-gradient(135deg,rgba(249,115,22,0.08),rgba(244,63,94,0.08));
+}
+/* LIGHT WARM */
+body.theme-lw{
+  --bg:#fff8f2;--bg2:#fff0e0;--card:#ffffff;--card2:#fff5eb;
+  --border:rgba(234,88,12,0.13);--border-h:rgba(234,88,12,0.32);
+  --text:#2d1a0e;--muted:#7a4a2e;--dim:#c4967a;
+  --hover-bg:rgba(234,88,12,0.05);
+  --a1:#ea580c;--a2:#db2777;
+  --logo-g:linear-gradient(135deg,#ea580c,#db2777);
+  --hero-glow:rgba(234,88,12,0.1);
+  --eyebrow-bg:rgba(234,88,12,0.08);--eyebrow-border:rgba(234,88,12,0.26);--eyebrow-c:#ea580c;
+  --nav-bg:rgba(255,248,242,0.94);--nav-border:rgba(234,88,12,0.13);
+  --scroll-thumb:rgba(234,88,12,0.18);
+  --ai-border:rgba(234,88,12,0.22);
+  --ai-bg:linear-gradient(135deg,rgba(234,88,12,0.07),rgba(219,39,119,0.07));
+}
+
+/* ====================================================
+   BASE
+==================================================== */
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.35s,color 0.35s}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:3px}
+
+/* ====================================================
+   NAV
+==================================================== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--nav-border);transition:background 0.35s,border-color 0.35s}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:700;background:var(--logo-g);-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer;user-select:none;white-space:nowrap}
+.nav-right{display:flex;align-items:center;gap:10px;flex-wrap:nowrap}
+.nav-btn{padding:6px 14px;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:0.78rem;font-family:inherit;transition:var(--t);white-space:nowrap}
+.nav-btn:hover{color:var(--text);border-color:var(--border-h);background:var(--hover-bg)}
+/* Theme switcher */
+.theme-sw{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:5px 8px}
+.th-label{font-size:0.68rem;color:var(--dim);white-space:nowrap;padding-right:4px;display:none}
+@media(min-width:520px){.th-label{display:block}}
+.th-dot{width:18px;height:18px;border-radius:50%;border:2.5px solid transparent;cursor:pointer;transition:var(--t);outline:none;flex-shrink:0}
+.th-dot:hover,.th-dot.active{border-color:var(--text);transform:scale(1.2)}
+
+/* ====================================================
+   VIEWS
+==================================================== */
+.view{display:none;padding-top:60px}
+.view.active{display:block}
+
+/* ====================================================
+   HOME — HERO
+==================================================== */
+.hero{padding:70px 22px 46px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:650px;height:650px;background:radial-gradient(circle,var(--hero-glow),transparent 65%);pointer-events:none}
+.eyebrow{display:inline-block;padding:5px 14px;border-radius:50px;border:1px solid var(--eyebrow-border);background:var(--eyebrow-bg);font-size:0.69rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--eyebrow-c);margin-bottom:20px}
+.hero h1{font-size:clamp(1.95rem,5.5vw,3.9rem);margin-bottom:19px;line-height:1.1}
+.grad{background:var(--logo-g);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{max-width:570px;margin:0 auto 38px;color:var(--muted);font-size:0.98rem;line-height:1.76}
+.hero-stats{display:flex;justify-content:center;gap:38px;flex-wrap:wrap;margin-bottom:50px}
+.stat-n{font-size:1.75rem;font-weight:800;background:var(--logo-g);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-l{font-size:0.69rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px}
+
+/* ====================================================
+   QUIZ CARDS
+==================================================== */
+.quiz-grid{max-width:1150px;margin:0 auto;padding:0 20px 60px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.qcard{position:relative;border-radius:var(--r);padding:26px;cursor:pointer;overflow:hidden;border:1px solid var(--border);background:var(--card);transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s}
+.qcard::after{content:'';position:absolute;inset:0;opacity:0.06;background:var(--qg);transition:opacity 0.3s}
+.qcard:hover{transform:translateY(-5px);border-color:var(--border-h)}
+.qcard:hover::after{opacity:0.13}
+.qcard-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:15px;background:var(--qg)}
+.qcard-badge{display:inline-block;padding:3px 10px;border-radius:50px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;margin-bottom:10px}
+.qcard h3{font-size:1.18rem;margin-bottom:9px}
+.qcard p{color:var(--muted);font-size:0.84rem;line-height:1.65;margin-bottom:13px}
+.qcard-meta{display:flex;gap:11px;font-size:0.72rem;color:var(--dim);flex-wrap:wrap}
+.qcard-cta{margin-top:17px;font-size:0.84rem;font-weight:600;display:flex;align-items:center;gap:5px}
+
+/* COOL QUIZ GRADIENTS */
+.qcard.trauma{--qg:linear-gradient(135deg,#8B5CF6,#06B6D4)}
+.qcard.love{--qg:linear-gradient(135deg,#F472B6,#EF4444)}
+.qcard.mbti{--qg:linear-gradient(135deg,#6366F1,#3B82F6)}
+.qcard.ocean{--qg:linear-gradient(135deg,#10B981,#06B6D4)}
+.qcard.compat{--qg:linear-gradient(135deg,#F59E0B,#F97316)}
+/* WARM QUIZ GRADIENTS */
+body.theme-dw .qcard.trauma{--qg:linear-gradient(135deg,#e11d48,#f97316)}
+body.theme-dw .qcard.love{--qg:linear-gradient(135deg,#f43f5e,#fb923c)}
+body.theme-dw .qcard.mbti{--qg:linear-gradient(135deg,#d97706,#dc2626)}
+body.theme-dw .qcard.ocean{--qg:linear-gradient(135deg,#16a34a,#0d9488)}
+body.theme-dw .qcard.compat{--qg:linear-gradient(135deg,#b45309,#ea580c)}
+body.theme-lw .qcard.trauma{--qg:linear-gradient(135deg,#be123c,#c2410c)}
+body.theme-lw .qcard.love{--qg:linear-gradient(135deg,#e11d48,#ea580c)}
+body.theme-lw .qcard.mbti{--qg:linear-gradient(135deg,#b45309,#b91c1c)}
+body.theme-lw .qcard.ocean{--qg:linear-gradient(135deg,#15803d,#0f766e)}
+body.theme-lw .qcard.compat{--qg:linear-gradient(135deg,#92400e,#c2410c)}
+
+/* Badge & CTA — default cool */
+.qcard.trauma .qcard-badge{background:rgba(139,92,246,0.18);color:#c4b5fd}
+.qcard.love .qcard-badge{background:rgba(244,114,182,0.18);color:#fbcfe8}
+.qcard.mbti .qcard-badge{background:rgba(99,102,241,0.18);color:#c7d2fe}
+.qcard.ocean .qcard-badge{background:rgba(16,185,129,0.18);color:#a7f3d0}
+.qcard.compat .qcard-badge{background:rgba(245,158,11,0.18);color:#fde68a}
+.qcard.trauma .qcard-cta{color:#a78bfa}
+.qcard.love .qcard-cta{color:#f9a8d4}
+.qcard.mbti .qcard-cta{color:#a5b4fc}
+.qcard.ocean .qcard-cta{color:#6ee7b7}
+.qcard.compat .qcard-cta{color:#fcd34d}
+/* Light cool badge overrides */
+body.theme-lc .qcard.trauma .qcard-badge{background:rgba(124,58,237,0.12);color:#7c3aed}
+body.theme-lc .qcard.love .qcard-badge{background:rgba(190,24,93,0.12);color:#be185d}
+body.theme-lc .qcard.mbti .qcard-badge{background:rgba(67,56,202,0.12);color:#4338ca}
+body.theme-lc .qcard.ocean .qcard-badge{background:rgba(4,120,87,0.12);color:#047857}
+body.theme-lc .qcard.compat .qcard-badge{background:rgba(180,83,9,0.12);color:#b45309}
+body.theme-lc .qcard.trauma .qcard-cta{color:#7c3aed}
+body.theme-lc .qcard.love .qcard-cta{color:#be185d}
+body.theme-lc .qcard.mbti .qcard-cta{color:#4338ca}
+body.theme-lc .qcard.ocean .qcard-cta{color:#047857}
+body.theme-lc .qcard.compat .qcard-cta{color:#b45309}
+/* Warm badge overrides */
+body.theme-dw .qcard.trauma .qcard-badge,body.theme-lw .qcard.trauma .qcard-badge{background:rgba(225,29,72,0.18);color:#fca5a5}
+body.theme-dw .qcard.love .qcard-badge,body.theme-lw .qcard.love .qcard-badge{background:rgba(244,63,94,0.18);color:#fecdd3}
+body.theme-dw .qcard.mbti .qcard-badge,body.theme-lw .qcard.mbti .qcard-badge{background:rgba(217,119,6,0.18);color:#fde68a}
+body.theme-dw .qcard.compat .qcard-badge,body.theme-lw .qcard.compat .qcard-badge{background:rgba(220,38,38,0.18);color:#fecaca}
+body.theme-dw .qcard.trauma .qcard-cta,body.theme-lw .qcard.trauma .qcard-cta{color:#fca5a5}
+body.theme-dw .qcard.love .qcard-cta,body.theme-lw .qcard.love .qcard-cta{color:#fecdd3}
+body.theme-dw .qcard.mbti .qcard-cta,body.theme-lw .qcard.mbti .qcard-cta{color:#fde68a}
+body.theme-dw .qcard.compat .qcard-cta,body.theme-lw .qcard.compat .qcard-cta{color:#fecaca}
+body.theme-lw .qcard.trauma .qcard-cta{color:#be123c}
+body.theme-lw .qcard.love .qcard-cta{color:#e11d48}
+body.theme-lw .qcard.ocean .qcard-cta{color:#15803d}
+body.theme-lw .qcard.compat .qcard-cta{color:#92400e}
+
+/* ====================================================
+   TYPES EXPLORER
+==================================================== */
+.types-section{max-width:1150px;margin:0 auto;padding:0 20px 80px}
+.types-hdr{text-align:center;margin-bottom:34px}
+.types-hdr h2{font-size:clamp(1.55rem,3.5vw,2.35rem);margin-bottom:11px}
+.types-hdr p{color:var(--muted);font-size:0.93rem;max-width:510px;margin:0 auto}
+.types-tabs-wrap{overflow-x:auto;margin-bottom:26px;padding-bottom:3px;scrollbar-width:none}
+.types-tabs-wrap::-webkit-scrollbar{display:none}
+.types-tabs{display:flex;gap:8px;min-width:max-content;justify-content:center}
+.ttab{padding:9px 19px;border-radius:50px;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:0.82rem;font-family:inherit;font-weight:500;transition:var(--t);white-space:nowrap}
+.ttab:hover{background:var(--hover-bg);color:var(--text);border-color:var(--border-h)}
+.ttab.active{background:var(--a1);color:#fff;border-color:var(--a1);box-shadow:0 0 18px -5px var(--a1)}
+.tpanel{display:none}
+.tpanel.active{display:block;animation:fadeUp 0.4s ease}
+
+/* Type cards */
+.type-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:13px}
+.type-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:18px;transition:var(--t);position:relative;overflow:hidden}
+.type-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--tc-g,linear-gradient(90deg,var(--a1),var(--a2)))}
+.type-card:hover{border-color:var(--border-h);background:var(--card2);transform:translateY(-3px)}
+.tc-top{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.tc-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;background:var(--tc-g,linear-gradient(135deg,var(--a1),var(--a2)));flex-shrink:0}
+.tc-name{font-size:0.94rem;font-weight:700;line-height:1.2}
+.tc-sub{font-size:0.7rem;color:var(--dim);margin-top:2px}
+.tc-desc{font-size:0.8rem;color:var(--muted);line-height:1.6}
+.tc-badge{display:inline-block;padding:3px 9px;border-radius:50px;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;margin-top:9px;background:var(--hover-bg);border:1px solid var(--border);color:var(--dim)}
+
+/* Group label */
+.group-label{font-size:0.77rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;color:var(--a1);margin-bottom:11px;padding-left:3px;display:flex;align-items:center;gap:8px}
+.group-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.group-section{margin-bottom:26px}
+
+/* MBTI 16-grid */
+.mbti-16-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:22px}
+.mbti-mini{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:13px 10px;cursor:pointer;transition:var(--t);text-align:center}
+.mbti-mini:hover{border-color:var(--border-h);background:var(--card2);transform:translateY(-2px)}
+.mm-code{font-size:1rem;font-weight:800;font-family:'Playfair Display',serif;color:var(--a1);margin-bottom:3px}
+.mm-emoji{font-size:1.35rem;margin-bottom:3px}
+.mm-name{font-size:0.7rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.mm-tag{font-size:0.64rem;color:var(--dim);line-height:1.4}
+
+/* OCEAN trait cards */
+.ocean-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.ocean-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:20px;transition:var(--t);border-left:4px solid var(--oc)}
+.ocean-card:hover{background:var(--card2)}
+.oc-header{display:flex;align-items:center;gap:9px;margin-bottom:13px}
+.oc-icon{font-size:1.5rem}
+.oc-name{font-size:0.96rem;font-weight:700}
+.oc-short{font-size:0.78rem;color:var(--dim);margin-top:2px}
+.oc-levels{display:flex;flex-direction:column;gap:9px}
+.oc-level{background:var(--bg2);border-radius:9px;padding:11px}
+.oc-level-lbl{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;color:var(--dim);margin-bottom:3px}
+.oc-level-desc{font-size:0.79rem;color:var(--muted);line-height:1.55}
+
+/* Compat layout */
+.compat-two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.compat-sub-title{font-size:0.77rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;color:var(--a1);margin-bottom:13px}
+.pillar-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px;display:flex;gap:11px;align-items:flex-start;margin-bottom:10px;transition:var(--t)}
+.pillar-card:hover{background:var(--card2)}
+.pi-icon{font-size:1.35rem;flex-shrink:0;margin-top:1px}
+.pi-name{font-size:0.88rem;font-weight:700;margin-bottom:3px}
+.pi-desc{font-size:0.78rem;color:var(--muted);line-height:1.55}
+.level-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px 15px;display:flex;align-items:flex-start;gap:11px;margin-bottom:10px;transition:var(--t)}
+.level-card:hover{background:var(--card2)}
+.lv-emoji{font-size:1.35rem;flex-shrink:0}
+.lv-name{font-size:0.88rem;font-weight:700;margin-bottom:2px}
+.lv-range{font-size:0.69rem;color:var(--a1);font-weight:600;margin-bottom:3px}
+.lv-desc{font-size:0.77rem;color:var(--muted);line-height:1.5}
+
+/* Intro panel */
+.intro-panel-box{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:14px 16px;margin-bottom:20px;text-align:left}
+.intro-panel-lbl{font-size:0.66rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);margin-bottom:8px;font-weight:600}
+.poss-tags{display:flex;flex-wrap:wrap;gap:6px}
+.poss-tag{padding:3px 10px;border-radius:50px;font-size:0.74rem;font-weight:500;background:var(--hover-bg);border:1px solid var(--border);color:var(--muted)}
+
+/* ====================================================
+   QUIZ INTRO
+==================================================== */
+#quiz-intro{min-height:calc(100vh - 60px);display:none;align-items:center;justify-content:center;padding:34px 20px}
+#quiz-intro.active{display:flex}
+.intro-card{max-width:630px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:38px;text-align:center}
+.intro-icon{width:70px;height:70px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2.1rem;margin:0 auto 19px}
+.intro-card h2{font-size:1.75rem;margin-bottom:11px}
+.intro-sub{color:var(--muted);font-size:0.95rem;line-height:1.72;margin-bottom:22px}
+.intro-details{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:20px}
+.idet{background:var(--bg2);border-radius:10px;padding:12px;text-align:center}
+.idet .lbl{font-size:0.64rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);margin-bottom:5px}
+.idet .val{font-size:0.98rem;font-weight:700}
+.warn-box{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:12px 15px;margin-bottom:20px;font-size:0.8rem;color:#fca5a5;text-align:left;line-height:1.6}
+.start-btn{padding:13px 38px;border-radius:50px;border:none;font-size:0.93rem;font-weight:700;cursor:pointer;font-family:inherit;color:#fff;letter-spacing:0.02em;transition:var(--t)}
+.start-btn:hover{transform:scale(1.04);filter:brightness(1.1)}
+
+/* ====================================================
+   QUIZ INTERFACE
+==================================================== */
+.qhdr{max-width:710px;margin:0 auto;padding:24px 20px 0}
+.qmeta{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.qtitle-sm{font-size:0.78rem;color:var(--muted);font-weight:500}
+.qcount{font-size:0.78rem;color:var(--muted)}
+.prog-bar{height:4px;background:var(--border);border-radius:50px;overflow:hidden;margin-bottom:38px}
+.prog-fill{height:100%;border-radius:50px;transition:width 0.4s ease}
+.qarea{max-width:710px;margin:0 auto;padding:0 20px 54px}
+.qnum{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--dim);margin-bottom:12px}
+.qtext{font-size:clamp(1rem,2.4vw,1.28rem);font-family:'Playfair Display',serif;line-height:1.55;margin-bottom:30px}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{padding:15px 19px;border-radius:13px;border:1.5px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;text-align:left;font-size:0.89rem;font-family:inherit;transition:all 0.2s;line-height:1.5}
+.opt:hover{background:var(--card2);border-color:var(--border-h);transform:translateX(4px)}
+.likert{display:flex;gap:8px;flex-wrap:wrap}
+.lbtn{flex:1;min-width:64px;padding:12px 4px;border-radius:13px;border:1.5px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;text-align:center;font-family:inherit;transition:all 0.2s}
+.lbtn .ln{font-size:1.2rem;font-weight:700;display:block;margin-bottom:2px}
+.lbtn .ll{font-size:0.62rem;color:var(--dim)}
+.lbtn:hover{background:var(--card2);border-color:var(--border-h)}
+.ab-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ab{padding:19px 15px;border-radius:13px;border:1.5px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;text-align:left;font-family:inherit;transition:all 0.2s;font-size:0.87rem;line-height:1.55}
+.ab .abl{font-size:0.63rem;text-transform:uppercase;font-weight:700;letter-spacing:0.1em;color:var(--dim);margin-bottom:6px;display:block}
+.ab:hover{background:var(--card2);border-color:var(--border-h)}
+/* Selected states — cool */
+.sel-trauma{border-color:#8B5CF6!important;background:rgba(139,92,246,0.13)!important}
+.sel-love{border-color:#F472B6!important;background:rgba(244,114,182,0.13)!important}
+.sel-mbti{border-color:#6366F1!important;background:rgba(99,102,241,0.13)!important}
+.sel-ocean{border-color:#10B981!important;background:rgba(16,185,129,0.13)!important}
+.sel-compat{border-color:#F59E0B!important;background:rgba(245,158,11,0.13)!important}
+/* Selected states — warm overrides */
+body.theme-dw .sel-trauma,body.theme-lw .sel-trauma{border-color:#e11d48!important;background:rgba(225,29,72,0.13)!important}
+body.theme-dw .sel-love,body.theme-lw .sel-love{border-color:#f43f5e!important;background:rgba(244,63,94,0.13)!important}
+body.theme-dw .sel-mbti,body.theme-lw .sel-mbti{border-color:#d97706!important;background:rgba(217,119,6,0.13)!important}
+body.theme-dw .sel-compat,body.theme-lw .sel-compat{border-color:#dc2626!important;background:rgba(220,38,38,0.13)!important}
+/* Nav */
+.qnav{display:flex;gap:10px;margin-top:24px;align-items:center}
+.qback{padding:9px 19px;border-radius:50px;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;font-size:0.82rem;transition:var(--t)}
+.qback:hover{color:var(--text);border-color:var(--border-h)}
+.qnext{padding:9px 24px;border-radius:50px;border:none;color:#fff;font-family:inherit;font-size:0.82rem;font-weight:600;cursor:pointer;transition:var(--t)}
+.qnext:disabled{opacity:0.3;cursor:not-allowed}
+.qnext:not(:disabled):hover{transform:scale(1.04);filter:brightness(1.1)}
+
+/* ====================================================
+   RESULTS
+==================================================== */
+.res-hero{text-align:center;padding:50px 20px 30px;position:relative;overflow:hidden}
+.res-hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:480px;height:480px;border-radius:50%;filter:blur(80px);opacity:0.18;background:var(--qg);pointer-events:none}
+.res-badge{display:inline-block;padding:5px 15px;border-radius:50px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:17px}
+.res-icon{font-size:3.4rem;margin-bottom:12px}
+.res-type{font-size:clamp(1.55rem,4vw,2.55rem);margin-bottom:12px}
+.res-tagline{color:var(--muted);font-size:0.98rem;max-width:550px;margin:0 auto 30px;line-height:1.65}
+.res-wrap{max-width:850px;margin:0 auto;padding:0 20px 70px}
+.res-sec{background:var(--card);border:1px solid var(--border);border-radius:17px;padding:26px;margin-bottom:18px}
+.res-sec h3{font-size:1.18rem;margin-bottom:15px;display:flex;align-items:center;gap:8px}
+.sec-icon{font-size:1.2rem}
+.trait-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:11px}
+.trait-it{background:var(--bg2);border-radius:10px;padding:14px}
+.tlbl{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--dim);margin-bottom:6px}
+.tbar{height:5px;background:var(--border);border-radius:50px;overflow:hidden;margin-bottom:5px}
+.tbar-fill{height:100%;border-radius:50px}
+.tval{font-size:0.79rem;font-weight:600}
+.steps{display:flex;flex-direction:column;gap:15px}
+.step{display:flex;gap:15px;align-items:flex-start}
+.snum{min-width:35px;height:35px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.84rem;flex-shrink:0;color:#fff}
+.scont h4{font-size:0.92rem;font-weight:600;margin-bottom:4px}
+.scont p{font-size:0.83rem;color:var(--muted);line-height:1.62}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{padding:4px 11px;border-radius:50px;font-size:0.77rem;font-weight:500;background:var(--hover-bg);border:1px solid var(--border)}
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ibox{background:var(--bg2);border-radius:10px;padding:16px}
+.ibox h4{font-size:0.74rem;text-transform:uppercase;letter-spacing:0.09em;color:var(--muted);margin-bottom:9px}
+.ibox ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.ibox ul li{font-size:0.82rem;line-height:1.55;padding-left:14px;position:relative;color:var(--muted)}
+.ibox ul li::before{content:'→';position:absolute;left:0;color:var(--dim)}
+.action-btns{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.btn-p{padding:11px 26px;border-radius:50px;border:none;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:inherit;color:#fff;transition:var(--t)}
+.btn-p:hover{transform:scale(1.02);filter:brightness(1.1)}
+.btn-s{padding:11px 26px;border-radius:50px;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;font-size:0.88rem;font-weight:500;transition:var(--t)}
+.btn-s:hover{color:var(--text);border-color:var(--border-h);background:var(--hover-bg)}
+.score-ring-wrap{display:flex;justify-content:center;margin-bottom:22px}
+.ring-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-num{font-size:1.85rem;font-weight:800}
+.ring-lbl{font-size:0.66rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em}
+.ai-box{background:var(--ai-bg);border:1px solid var(--ai-border);border-radius:17px;padding:24px;margin-bottom:18px;text-align:center}
+.ai-box h3{margin-bottom:8px;font-size:1.05rem}
+.ai-box p{color:var(--muted);font-size:0.83rem;line-height:1.6;margin-bottom:15px;max-width:450px;margin-left:auto;margin-right:auto}
+.ai-input-row{display:flex;gap:8px;max-width:450px;margin:0 auto}
+.ai-input{flex:1;padding:9px 14px;border-radius:50px;border:1.5px solid var(--border);background:var(--bg2);color:var(--text);font-family:inherit;font-size:0.83rem;outline:none}
+.ai-input:focus{border-color:var(--a1)}
+.ai-input::placeholder{color:var(--dim)}
+.ai-submit{padding:9px 19px;border-radius:50px;border:none;background:var(--logo-g);color:#fff;font-family:inherit;font-size:0.83rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:var(--t)}
+.ai-submit:hover{transform:scale(1.04)}
+.ai-result{background:var(--bg2);border-radius:12px;padding:17px;text-align:left;margin-top:13px;font-size:0.84rem;line-height:1.7;color:var(--muted);display:none;max-height:370px;overflow-y:auto;white-space:pre-wrap}
+.ai-result.show{display:block}
+.ai-loading{display:none;color:var(--muted);font-size:0.82rem;margin-top:10px;font-style:italic}
+.ai-loading.show{display:block}
+.affirm-list{display:flex;flex-direction:column;gap:10px}
+.affirm-item{background:var(--bg2);border-radius:10px;padding:14px 17px;font-size:0.86rem;line-height:1.6;color:var(--muted);border-left:3px solid var(--acc)}
+.dim-bars{display:flex;flex-direction:column;gap:12px}
+.dim-row{display:flex;align-items:center;gap:10px}
+.dim-name{font-size:0.78rem;color:var(--muted);width:150px;flex-shrink:0}
+.dim-bar{flex:1;height:7px;background:var(--border);border-radius:50px;overflow:hidden}
+.dim-fill{height:100%;border-radius:50px}
+.dim-pct{font-size:0.78rem;font-weight:600;width:33px;text-align:right;flex-shrink:0}
+.mbti-quad{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.mbti-dim{background:var(--bg2);border-radius:10px;padding:14px}
+.mbti-dim-lbl{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.09em;color:var(--dim);margin-bottom:8px}
+.mbti-bar-wrap{height:6px;background:var(--border);border-radius:50px;margin-bottom:5px;overflow:hidden}
+.mbti-bar-fill{height:100%;border-radius:50px}
+.mbti-poles{display:flex;justify-content:space-between;font-size:0.71rem;font-weight:600}
+.foot{text-align:center;padding:34px 20px;color:var(--dim);font-size:0.76rem;border-top:1px solid var(--border)}
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideR{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+.fade-up{animation:fadeUp 0.5s ease forwards}
+.slide-r{animation:slideR 0.35s ease forwards}
+/* Responsive */
+@media(max-width:700px){
+  .nav{padding:10px 15px}
+  .hero{padding:52px 16px 36px}
+  .quiz-grid{padding:0 16px 48px;grid-template-columns:1fr}
+  .intro-card{padding:24px 16px}
+  .intro-details{grid-template-columns:1fr 1fr}
+  .ab-opts,.insight-grid,.compat-two-col{grid-template-columns:1fr}
+  .hero-stats{gap:16px}
+  .mbti-quad{grid-template-columns:1fr}
+  .mbti-16-grid{grid-template-columns:repeat(2,1fr)}
+  .ai-input-row{flex-direction:column}
+  .dim-name{width:95px}
+  .types-tabs{justify-content:flex-start}
+}
+@media(max-width:400px){
+  .intro-details{grid-template-columns:1fr}
+  .likert{gap:5px}
+  .lbtn{min-width:42px;padding:8px 2px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo" onclick="showHome()">🧠 MindScape</div>
+  <div class="nav-right">
+    <span class="th-label" id="th-label">🌙 Dark Cool</span>
+    <div class="theme-sw">
+      <button class="th-dot active" id="th-dc" onclick="setTheme('dc')" title="Dark Cool"
+        style="background:linear-gradient(135deg,#8B5CF6,#06B6D4)"></button>
+      <button class="th-dot" id="th-lc" onclick="setTheme('lc')" title="Light Cool"
+        style="background:linear-gradient(135deg,#7c3aed,#0284c7)"></button>
+      <button class="th-dot" id="th-dw" onclick="setTheme('dw')" title="Dark Warm"
+        style="background:linear-gradient(135deg,#f97316,#f43f5e)"></button>
+      <button class="th-dot" id="th-lw" onclick="setTheme('lw')" title="Light Warm"
+        style="background:linear-gradient(135deg,#ea580c,#db2777)"></button>
+    </div>
+    <button class="nav-btn" onclick="showHome()" id="nav-home-btn" style="display:none">← All Quizzes</button>
+  </div>
+</nav>
+
+<!-- ==================== HOME ==================== -->
+<div id="home" class="view active">
+  <div class="hero fade-up">
+    <div class="eyebrow">✦ Self-Discovery Platform</div>
+    <h1>Understand Your Mind,<br><span class="grad">Transform Your Life</span></h1>
+    <p class="hero-desc">Five in-depth psychology quizzes — each with 35–48 questions — delivering a fully personalized analysis of who you are, how you relate, and a concrete roadmap to your best self.</p>
+    <div class="hero-stats">
+      <div><div class="stat-n">5</div><div class="stat-l">Psychology Quizzes</div></div>
+      <div><div class="stat-n">190+</div><div class="stat-l">Total Questions</div></div>
+      <div><div class="stat-n">4</div><div class="stat-l">Theme Options</div></div>
+    </div>
+  </div>
+
+  <div class="quiz-grid">
+    <div class="qcard trauma" onclick="startQuiz('trauma')">
+      <div class="qcard-icon">🧩</div>
+      <div class="qcard-badge">ACE Framework</div>
+      <h3>Childhood Trauma</h3>
+      <p>Explore how adverse childhood experiences shaped your nervous system, emotional patterns, and core beliefs — and chart a clear path toward healing and wholeness.</p>
+      <div class="qcard-meta"><span>⏱ 12–18 min</span><span>📋 36 questions</span><span>⚠ Sensitive topics</span></div>
+      <div class="qcard-cta">Begin Assessment →</div>
+    </div>
+    <div class="qcard love" onclick="startQuiz('love')">
+      <div class="qcard-icon">💞</div>
+      <div class="qcard-badge">Chapman's 5 Languages</div>
+      <h3>Love Languages</h3>
+      <p>Discover how you give and receive love most naturally, why past relationships felt unfulfilling, and how to build deeply satisfying, lasting connections.</p>
+      <div class="qcard-meta"><span>⏱ 8–12 min</span><span>📋 40 questions</span><span>💡 All relationships</span></div>
+      <div class="qcard-cta">Discover Yours →</div>
+    </div>
+    <div class="qcard mbti" onclick="startQuiz('mbti')">
+      <div class="qcard-icon">🔮</div>
+      <div class="qcard-badge">16 Personality Types</div>
+      <h3>MBTI Personality</h3>
+      <p>Find your Myers-Briggs type across four cognitive dimensions and unlock deep insights into how your mind naturally processes the world around you.</p>
+      <div class="qcard-meta"><span>⏱ 12–16 min</span><span>📋 48 questions</span><span>🧬 4 dimensions</span></div>
+      <div class="qcard-cta">Find Your Type →</div>
+    </div>
+    <div class="qcard ocean" onclick="startQuiz('ocean')">
+      <div class="qcard-icon">🌊</div>
+      <div class="qcard-badge">Big Five OCEAN</div>
+      <h3>Personality Traits</h3>
+      <p>Measure your Big Five OCEAN traits — the most scientifically validated personality model — for an accurate, research-based map of your true character.</p>
+      <div class="qcard-meta"><span>⏱ 10–14 min</span><span>📋 40 questions</span><span>🔬 Research-based</span></div>
+      <div class="qcard-cta">Explore Traits →</div>
+    </div>
+    <div class="qcard compat" onclick="startQuiz('compat')">
+      <div class="qcard-icon">💑</div>
+      <div class="qcard-badge">Couples Assessment</div>
+      <h3>Compatibility Quiz</h3>
+      <p>Assess the five pillars of relationship compatibility — communication, values, trust, intimacy, and conflict resolution — for couples and singles alike.</p>
+      <div class="qcard-meta"><span>⏱ 8–12 min</span><span>📋 35 questions</span><span>❤ Couples & singles</span></div>
+      <div class="qcard-cta">Assess Bond →</div>
+    </div>
+  </div>
+
+  <!-- ==================== TYPES EXPLORER ==================== -->
+  <div class="types-section">
+    <div class="types-hdr">
+      <div class="eyebrow">✦ Browse Before You Begin</div>
+      <h2>Explore All <span class="grad">Result Types</span></h2>
+      <p>See every possible outcome across all five quizzes — their descriptions, what they mean, and how they shape your life.</p>
+    </div>
+    <div class="types-tabs-wrap">
+      <div class="types-tabs">
+        <button class="ttab active" onclick="switchTab('trauma')">🧩 Trauma Profiles</button>
+        <button class="ttab" onclick="switchTab('love')">💞 Love Languages</button>
+        <button class="ttab" onclick="switchTab('mbti')">🔮 MBTI Types</button>
+        <button class="ttab" onclick="switchTab('ocean')">🌊 OCEAN Traits</button>
+        <button class="ttab" onclick="switchTab('compat')">💑 Compatibility</button>
+      </div>
+    </div>
+    <div>
+      <div id="tab-trauma" class="tpanel active"></div>
+      <div id="tab-love" class="tpanel"></div>
+      <div id="tab-mbti" class="tpanel"></div>
+      <div id="tab-ocean" class="tpanel"></div>
+      <div id="tab-compat" class="tpanel"></div>
+    </div>
+  </div>
+
+  <div class="foot">MindScape · For educational and self-reflection purposes only · Not a substitute for professional mental health support</div>
+</div>
+
+<!-- ==================== QUIZ INTRO ==================== -->
+<div id="quiz-intro" class="view">
+  <div style="min-height:calc(100vh - 60px);display:flex;align-items:center;justify-content:center;padding:36px 20px">
+    <div class="intro-card fade-up" id="intro-card"></div>
+  </div>
+</div>
+
+<!-- ==================== QUIZ VIEW ==================== -->
+<div id="quiz-view" class="view">
+  <div class="qhdr">
+    <div class="qmeta">
+      <span class="qtitle-sm" id="q-title-sm"></span>
+      <span class="qcount" id="q-count"></span>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  </div>
+  <div class="qarea slide-r" id="q-area">
+    <div class="qnum" id="q-num"></div>
+    <div class="qtext" id="q-text"></div>
+    <div id="q-opts"></div>
+    <div class="qnav">
+      <button class="qback" id="q-back" onclick="prevQ()">← Back</button>
+      <button class="qnext" id="q-next" onclick="nextQ()" disabled>Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== RESULTS VIEW ==================== -->
+<div id="results-view" class="view">
+  <div id="results-content"></div>
+</div>
+
+<script>
+/* ====================================================
+   STATE
+==================================================== */
+let state = { currentQuiz:null, currentQ:0, answers:[], results:null };
+
+/* ====================================================
+   THEME SYSTEM
+==================================================== */
+const THEME_LABELS = { dc:'🌙 Dark Cool', lc:'☀️ Light Cool', dw:'🌙 Dark Warm', lw:'☀️ Light Warm' };
+
+function setTheme(t){
+  ['dc','lc','dw','lw'].forEach(k=>{
+    document.body.classList.remove('theme-'+k);
+    document.getElementById('th-'+k).classList.remove('active');
+  });
+  if(t!=='dc') document.body.classList.add('theme-'+t);
+  document.getElementById('th-'+t).classList.add('active');
+  document.getElementById('th-label').textContent = THEME_LABELS[t];
+  localStorage.setItem('ms-theme',t);
+}
+
+/* ====================================================
+   TAB SWITCHING
+==================================================== */
+function switchTab(tab){
+  document.querySelectorAll('.ttab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tpanel').forEach(p=>p.classList.remove('active'));
+  document.querySelector(`.ttab[onclick*="${tab}"]`).classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+
+/* ====================================================
+   QUIZ DATA
+==================================================== */
+const QUIZZES = {
+
+/* ---- TRAUMA ---- */
+trauma:{
+  title:'Childhood Trauma Assessment', shortTitle:'Trauma · ACE', icon:'🧩',
+  color:'#8B5CF6', color2:'#06B6D4', gradient:'linear-gradient(135deg,#8B5CF6,#06B6D4)',
+  badge:'ACE Framework', badgeBg:'rgba(139,92,246,0.18)', badgeColor:'#c4b5fd',
+  time:'12–18 min',
+  desc:'This assessment is based on the Adverse Childhood Experiences (ACE) framework. It explores how childhood experiences shaped your nervous system, emotional patterns, and core beliefs. There are no wrong answers.',
+  warning:'⚠ This quiz covers sensitive topics including abuse, neglect, and household dysfunction. Please take breaks if needed and reach out to a mental health professional for support.',
+  qtype:'likert5', labels:['Never','Rarely','Sometimes','Often','Always'],
+  possibleResults:['Resilient Spirit','Healing Seeker','Inner Warrior','Trauma Survivor','Phoenix'],
+  questions:[
+    {t:'As a child, did a parent or adult in your home push, grab, slap, or throw something at you?',cat:'pa'},
+    {t:'Were you hit hard enough by a parent or adult to leave marks or cause pain that lasted?',cat:'pa'},
+    {t:'Did you live in fear of physical punishment from someone in your household?',cat:'pa'},
+    {t:'Were you physically harmed in ways that felt extreme or frightening?',cat:'pa'},
+    {t:'Were you insulted, humiliated, or put down by a parent or adult in your home?',cat:'ea'},
+    {t:'Were you made to feel like you were unwanted, unloved, or a burden?',cat:'ea'},
+    {t:'Did adults frequently yell at you, threaten you, or make you feel afraid?',cat:'ea'},
+    {t:'Were you told things that made you feel worthless, stupid, or deeply flawed?',cat:'ea'},
+    {t:'Did caregivers dismiss or ridicule your emotions and feelings?',cat:'ea'},
+    {t:'Did anyone touch you sexually in a way you did not want, or that felt wrong?',cat:'sa'},
+    {t:'Did someone older than you try to have you engage in sexual activities?',cat:'sa'},
+    {t:'Were you exposed to sexual content or situations by an adult that felt inappropriate?',cat:'sa'},
+    {t:'As a child, did you often not have enough to eat?',cat:'pn'},
+    {t:'Did you have to wear dirty or inadequate clothing because no one cared for them?',cat:'pn'},
+    {t:'Were you left alone or without adult supervision for long periods when you were young?',cat:'pn'},
+    {t:'Did caregivers fail to get you medical or dental care when you clearly needed it?',cat:'pn'},
+    {t:'Did you feel there was no one in your family who truly supported or protected you?',cat:'en'},
+    {t:'Did you feel that your family members did not look out for each other?',cat:'en'},
+    {t:'Did you feel like you did not matter to your parents or caregivers?',cat:'en'},
+    {t:'Were your emotional needs consistently unacknowledged or ignored at home?',cat:'en'},
+    {t:'Did you feel unloved and emotionally alone even when you were with family?',cat:'en'},
+    {t:'Did you witness parents or adults in your home physically fighting or hurting each other?',cat:'dv'},
+    {t:'Did you see or hear a parent being threatened, pushed, or harmed by a partner?',cat:'dv'},
+    {t:'Did you grow up in a home atmosphere filled with fear between the adults?',cat:'dv'},
+    {t:'Were you afraid for your own safety or a parent\'s safety due to violence at home?',cat:'dv'},
+    {t:'Did someone in your household suffer from depression, severe anxiety, or another mental illness that significantly affected family life?',cat:'mi'},
+    {t:'Did a parent or household member ever attempt, or seriously threaten, self-harm or suicide?',cat:'mi'},
+    {t:'Did a family member\'s mental health struggles create instability or unpredictability at home?',cat:'mi'},
+    {t:'Did a parent or adult in your home drink excessively or use drugs regularly?',cat:'su'},
+    {t:'Were household responsibilities placed on you because a parent was incapacitated by substances?',cat:'su'},
+    {t:'Did substance use in your home create environments of fear, chaos, or unpredictability?',cat:'su'},
+    {t:'Did you ever feel you had to manage a parent\'s behavior due to their drinking or drug use?',cat:'su'},
+    {t:'Were your parents divorced, separated, or did a parent leave the family?',cat:'pl'},
+    {t:'Did you grow up without one or both parents due to death, abandonment, or incarceration?',cat:'pl'},
+    {t:'Was serious conflict between your parents a frequent disruption in your home?',cat:'pl'},
+    {t:'Did you experience significant instability in your home (moving often, different caregivers)?',cat:'pl'},
+  ],
+  calculate(answers){
+    const total=answers.reduce((s,a)=>s+a,0);
+    const max=answers.length*4;
+    const pct=Math.round((total/max)*100);
+    return{total,max,pct};
+  },
+  getProfile(pct){ return pct<=20?'resilient':pct<=40?'healing':pct<=60?'warrior':pct<=80?'survivor':'phoenix'; }
+},
+
+/* ---- LOVE ---- */
+love:{
+  title:'Love Language Discovery', shortTitle:'Love Languages', icon:'💞',
+  color:'#F472B6', color2:'#EF4444', gradient:'linear-gradient(135deg,#F472B6,#EF4444)',
+  badge:"Chapman's 5 Languages", badgeBg:'rgba(244,114,182,0.18)', badgeColor:'#fbcfe8',
+  time:'8–12 min',
+  desc:'Rate each statement on how strongly it resonates with you. Your highest-scoring category is your primary love language — the way you most naturally give and receive love.',
+  warning:null, qtype:'likert5a', labels:['Not at all','Slightly','Somewhat','Quite a bit','Absolutely'],
+  possibleResults:['Words of Affirmation','Acts of Service','Receiving Gifts','Quality Time','Physical Touch'],
+  questions:[
+    {t:'Hearing "I love you" or words of genuine appreciation fills me with warmth.',cat:'WA'},
+    {t:'A heartfelt compliment or encouraging message can turn my entire day around.',cat:'WA'},
+    {t:'When someone verbally acknowledges my efforts and contributions, I feel deeply valued.',cat:'WA'},
+    {t:'I treasure love letters, meaningful texts, or cards far more than physical gifts.',cat:'WA'},
+    {t:'During difficult times, encouraging and reassuring words matter more to me than actions.',cat:'WA'},
+    {t:'Being told specifically what someone loves about me touches me in a profound way.',cat:'WA'},
+    {t:'Public praise or acknowledgment in front of others feels wonderful and affirming.',cat:'WA'},
+    {t:'Harsh criticism or unkind words stay with me far longer than physical discomfort.',cat:'WA'},
+    {t:'I feel most loved when someone does helpful things for me without being asked.',cat:'AS'},
+    {t:'When a partner takes tasks off my plate because they know I\'m overwhelmed, it feels incredibly romantic.',cat:'AS'},
+    {t:'Actions speak louder than words to me — what people do says more than what they say.',cat:'AS'},
+    {t:'If someone prepares a meal, fixes something broken, or runs an errand for me, I feel deeply cared for.',cat:'AS'},
+    {t:'Having someone step in and help me when I\'m struggling means more than any gift.',cat:'AS'},
+    {t:'When people follow through on what they said they\'d do for me, I feel truly loved.',cat:'AS'},
+    {t:'Small acts of service — organizing something, doing laundry — feel like expressions of deep love to me.',cat:'AS'},
+    {t:'I feel unloved when people make promises to help but don\'t follow through.',cat:'AS'},
+    {t:'A thoughtful gift — even something small and inexpensive — makes me feel truly seen.',cat:'RG'},
+    {t:'I cherish physical tokens of affection as tangible reminders of love.',cat:'RG'},
+    {t:'When someone remembers a special occasion with a meaningful gift, it shows me they really care.',cat:'RG'},
+    {t:'Receiving something chosen specifically with me in mind makes me feel deeply loved.',cat:'RG'},
+    {t:'A surprise gift out of nowhere — with no occasion at all — thrills and moves me.',cat:'RG'},
+    {t:'I keep mementos, souvenirs, and keepsakes from people I love as precious treasures.',cat:'RG'},
+    {t:'The thought and intention behind a gift means everything to me.',cat:'RG'},
+    {t:'Receiving gifts feels like a physical symbol of love that I can hold onto.',cat:'RG'},
+    {t:'Having someone\'s undivided, focused attention means everything to me.',cat:'QT'},
+    {t:'I feel most connected when a loved one puts away all distractions just to be with me.',cat:'QT'},
+    {t:'Shared experiences and activities create the deepest sense of connection for me.',cat:'QT'},
+    {t:'When someone carves out time specifically for me, I feel like a priority and deeply valued.',cat:'QT'},
+    {t:'A deep, meaningful conversation feels like the greatest act of love anyone can offer.',cat:'QT'},
+    {t:'Being truly present with someone — phones away, full attention — feels like the ultimate gift.',cat:'QT'},
+    {t:'Regular one-on-one time with someone I love is essential to me feeling secure.',cat:'QT'},
+    {t:'When someone cancels plans or is distracted during our time together, I feel genuinely hurt.',cat:'QT'},
+    {t:'Hugs, hand-holding, and physical closeness make me feel immediately secure and loved.',cat:'PT'},
+    {t:'I find enormous comfort in physical touch when I\'m going through difficult times.',cat:'PT'},
+    {t:'A gentle touch on the arm, a squeeze of the hand, or a pat on the back speaks volumes to me.',cat:'PT'},
+    {t:'Physical affection is an absolutely essential part of feeling deeply connected to someone.',cat:'PT'},
+    {t:'I naturally reach out to touch people I care about — hugs, arms around shoulders.',cat:'PT'},
+    {t:'Sitting close, cuddling, or physical proximity during activities makes me feel deeply bonded.',cat:'PT'},
+    {t:'When I\'m upset, a hug or comforting physical contact helps more than any words.',cat:'PT'},
+    {t:'Lack of physical affection leaves me feeling disconnected, even if everything else is fine.',cat:'PT'},
+  ],
+  calculate(answers){
+    const cats={WA:0,AS:0,RG:0,QT:0,PT:0};
+    this.questions.forEach((q,i)=>{cats[q.cat]+=(answers[i]||1);});
+    const sorted=Object.entries(cats).sort((a,b)=>b[1]-a[1]);
+    return{scores:cats,primary:sorted[0][0],secondary:sorted[1][0],sorted};
+  }
+},
+
+/* ---- MBTI ---- */
+mbti:{
+  title:'MBTI Personality Type', shortTitle:'MBTI', icon:'🔮',
+  color:'#6366F1', color2:'#3B82F6', gradient:'linear-gradient(135deg,#6366F1,#3B82F6)',
+  badge:'16 Personality Types', badgeBg:'rgba(99,102,241,0.18)', badgeColor:'#c7d2fe',
+  time:'12–16 min',
+  desc:'For each question, choose the option (A or B) that feels most natural and true to you — not how you think you should be, but how you actually are. Go with your first instinct.',
+  warning:null, qtype:'ab',
+  possibleResults:['INTJ','INTP','ENTJ','ENTP','INFJ','INFP','ENFJ','ENFP','ISTJ','ISFJ','ESTJ','ESFJ','ISTP','ISFP','ESTP','ESFP'],
+  questions:[
+    {t:'At a party or social gathering, you tend to...',a:'Seek out new people and conversations — you feel energized mixing with many folks.',b:'Stick with a small group you know well — too many new interactions drain you.',dim:'EI',av:'E',bv:'I'},
+    {t:'When you have free time and no obligations, you most naturally want to...',a:'Call up friends, make plans, and be around people.',b:'Relax alone, read, or pursue a quiet solo activity.',dim:'EI',av:'E',bv:'I'},
+    {t:'Thinking through a difficult problem, you prefer to...',a:'Talk it out — verbalizing helps you think clearly.',b:'Mull it over privately before discussing with anyone.',dim:'EI',av:'E',bv:'I'},
+    {t:'Your circle of friends and acquaintances is...',a:'Wide — you know many people and enjoy expanding it further.',b:'Small and deep — a few close bonds mean more than many acquaintances.',dim:'EI',av:'E',bv:'I'},
+    {t:'When silence falls in a conversation, you usually...',a:'Feel an urge to fill it — silence feels uncomfortable.',b:'Find silence perfectly natural and don\'t feel pressure to fill it.',dim:'EI',av:'E',bv:'I'},
+    {t:'After a long day of social interaction you feel...',a:'Recharged and happy — people give you energy.',b:'Depleted and needing quiet time to restore yourself.',dim:'EI',av:'E',bv:'I'},
+    {t:'In a work or team setting, you thrive in...',a:'Open, collaborative, buzzing environments.',b:'Private, quiet spaces where you can focus without interruption.',dim:'EI',av:'E',bv:'I'},
+    {t:'When you\'re upset or stressed, you tend to...',a:'Reach out — talking to others helps you process.',b:'Withdraw — you need space and time alone to recover.',dim:'EI',av:'E',bv:'I'},
+    {t:'In group conversations, you are most often...',a:'Jumping in readily, thinking on your feet.',b:'Listening carefully, speaking up when you have something specific to add.',dim:'EI',av:'E',bv:'I'},
+    {t:'You prefer to communicate important things...',a:'By talking — a phone call or in-person conversation.',b:'In writing — it gives you time to organize your thoughts.',dim:'EI',av:'E',bv:'I'},
+    {t:'Being the center of attention at a gathering feels...',a:'Fun and natural — you enjoy it.',b:'Uncomfortable — you\'d rather observe or participate quietly.',dim:'EI',av:'E',bv:'I'},
+    {t:'After a week of social isolation you\'d feel...',a:'Restless and seriously missing human contact.',b:'Refreshed and honestly a little reluctant to return to social life.',dim:'EI',av:'E',bv:'I'},
+    {t:'When learning something new, you prefer...',a:'Concrete, practical examples and step-by-step instructions.',b:'Understanding the big picture and underlying theory first.',dim:'SN',av:'S',bv:'N'},
+    {t:'You naturally focus on...',a:'What is real, tangible, and happening right now.',b:'What could be, might be, or what things mean beneath the surface.',dim:'SN',av:'S',bv:'N'},
+    {t:'You\'d describe yourself as more...',a:'Practical and realistic — you deal with facts.',b:'Imaginative and visionary — you love possibilities.',dim:'SN',av:'S',bv:'N'},
+    {t:'In your work, you prefer...',a:'Tasks with clear, concrete details and measurable outcomes.',b:'Open-ended projects where you can explore and innovate.',dim:'SN',av:'S',bv:'N'},
+    {t:'You trust most...',a:'Direct sensory experience and proven methods.',b:'Your intuition, gut feelings, and abstract patterns.',dim:'SN',av:'S',bv:'N'},
+    {t:'You are more commonly described by others as...',a:'Dependable, grounded, and detail-oriented.',b:'Creative, insightful, and full of original ideas.',dim:'SN',av:'S',bv:'N'},
+    {t:'When tackling a project, you naturally...',a:'Follow a systematic, linear, step-by-step approach.',b:'Jump around, make unexpected connections, and work in bursts.',dim:'SN',av:'S',bv:'N'},
+    {t:'You\'re more focused on...',a:'The present — what\'s actually happening right now.',b:'The future — what could happen and what it could mean.',dim:'SN',av:'S',bv:'N'},
+    {t:'When reading a book or article, you prefer...',a:'Clear, literal, specific, concrete language.',b:'Rich metaphors, symbolism, analogies, and abstract ideas.',dim:'SN',av:'S',bv:'N'},
+    {t:'You notice...',a:'Specific details and facts that others often overlook.',b:'Patterns, themes, and connections that others often miss.',dim:'SN',av:'S',bv:'N'},
+    {t:'When given instructions you prefer them...',a:'Step-by-step, specific, and clear.',b:'General enough that you can interpret and adapt as you go.',dim:'SN',av:'S',bv:'N'},
+    {t:'Routine and established procedures feel...',a:'Comfortable and reassuring — they work, so why change them?',b:'Stifling — you prefer to find new and better ways to do things.',dim:'SN',av:'S',bv:'N'},
+    {t:'When making a decision, you primarily rely on...',a:'Logic, analysis, and objective criteria.',b:'Your values, how it will affect people, and what feels right.',dim:'TF',av:'T',bv:'F'},
+    {t:'In conflict, your instinct is to...',a:'Find the most logical, fair resolution regardless of feelings.',b:'Restore harmony and ensure everyone feels heard and respected.',dim:'TF',av:'T',bv:'F'},
+    {t:'When someone asks for your opinion, you give...',a:'Honest, direct feedback — even if it\'s hard to hear.',b:'Diplomatic feedback that\'s truthful but considers their feelings.',dim:'TF',av:'T',bv:'F'},
+    {t:'You feel most respected when people acknowledge your...',a:'Competence and logical mind.',b:'Compassion and emotional intelligence.',dim:'TF',av:'T',bv:'F'},
+    {t:'Consistent rules applied equally to everyone feel...',a:'Right and fair — everyone should be held to the same standard.',b:'Too rigid — exceptions for circumstances and individual needs matter.',dim:'TF',av:'T',bv:'F'},
+    {t:'When someone is upset, your first impulse is to...',a:'Help them solve the problem causing the distress.',b:'Empathize, validate their feelings, and offer emotional support.',dim:'TF',av:'T',bv:'F'},
+    {t:'In a group debate, you\'re more likely to...',a:'Challenge ideas rigorously, regardless of who presented them.',b:'Acknowledge merit in others\' ideas and seek common ground.',dim:'TF',av:'T',bv:'F'},
+    {t:'Critical feedback from others feels...',a:'Useful — you can separate it from your sense of self.',b:'Personal — even when it\'s well-intentioned, it stings.',dim:'TF',av:'T',bv:'F'},
+    {t:'You make decisions more easily when...',a:'The logical case is clear, even if it upsets some people.',b:'You\'re confident it aligns with your values and won\'t hurt others.',dim:'TF',av:'T',bv:'F'},
+    {t:'You\'re more naturally drawn to being...',a:'Truthful, even bluntly so.',b:'Kind, even if it means softening the truth.',dim:'TF',av:'T',bv:'F'},
+    {t:'When analyzing a situation, you start with...',a:'The facts and logical framework.',b:'The human impact and relational implications.',dim:'TF',av:'T',bv:'F'},
+    {t:'You admire people more who are...',a:'Highly competent and analytically sharp.',b:'Deeply empathetic and emotionally attuned.',dim:'TF',av:'T',bv:'F'},
+    {t:'Your daily life is...',a:'Structured — you have routines, plans, and schedules.',b:'Spontaneous — you prefer flexibility and handling things as they come.',dim:'JP',av:'J',bv:'P'},
+    {t:'When a project has no clear deadline, you...',a:'Set your own deadline and stick to it.',b:'Work when inspired and submit when it feels done.',dim:'JP',av:'J',bv:'P'},
+    {t:'Unfinished tasks and open loops make you feel...',a:'Uncomfortable until they\'re resolved.',b:'Fine — you\'re comfortable juggling many open threads.',dim:'JP',av:'J',bv:'P'},
+    {t:'Before a big trip or event, you tend to...',a:'Plan extensively — accommodations, itineraries, contingencies.',b:'Book the basics and figure the rest out spontaneously.',dim:'JP',av:'J',bv:'P'},
+    {t:'Your living and working space is typically...',a:'Organized — there\'s a clear place for everything.',b:'Functional chaos — it looks messy but you know where things are.',dim:'JP',av:'J',bv:'P'},
+    {t:'When making a big decision, you prefer to...',a:'Commit early and move forward confidently.',b:'Keep gathering information until the last possible moment.',dim:'JP',av:'J',bv:'P'},
+    {t:'Punctuality in yourself and others is...',a:'Very important — being on time shows respect.',b:'Nice but not crucial — flexibility matters more than rigidity.',dim:'JP',av:'J',bv:'P'},
+    {t:'When unexpected changes to your plans happen, you feel...',a:'Frustrated — you had things arranged for a reason.',b:'Fine or even excited — you adapt easily to new circumstances.',dim:'JP',av:'J',bv:'P'},
+    {t:'You feel most at ease in environments that are...',a:'Structured, with clear expectations and established procedures.',b:'Open and adaptable, where you can improvise and respond.',dim:'JP',av:'J',bv:'P'},
+    {t:'To-do lists and planners are...',a:'Essential tools you use consistently.',b:'Rarely used — you prefer to keep things in your head.',dim:'JP',av:'J',bv:'P'},
+    {t:'Finishing things feels...',a:'Deeply satisfying — closure is important to you.',b:'Less critical — starting new things is often more exciting.',dim:'JP',av:'J',bv:'P'},
+    {t:'When given an assignment, you prefer...',a:'Clear guidelines, expected outcomes, and defined structure.',b:'Freedom to interpret, explore, and do it your own way.',dim:'JP',av:'J',bv:'P'},
+  ],
+  calculate(answers){
+    let E=0,I=0,S=0,N=0,T=0,F=0,J=0,P=0;
+    this.questions.forEach((q,i)=>{
+      const a=answers[i];
+      if(q.dim==='EI'){if(a==='A')E++;else I++;}
+      if(q.dim==='SN'){if(a==='A')S++;else N++;}
+      if(q.dim==='TF'){if(a==='A')T++;else F++;}
+      if(q.dim==='JP'){if(a==='A')J++;else P++;}
+    });
+    const type=(E>=I?'E':'I')+(S>=N?'S':'N')+(T>=F?'T':'F')+(J>=P?'J':'P');
+    return{type,E,I,S,N,T,F,J,P,ei:Math.round((E/12)*100),sn:Math.round((S/12)*100),tf:Math.round((T/12)*100),jp:Math.round((J/12)*100)};
+  }
+},
+
+/* ---- OCEAN ---- */
+ocean:{
+  title:'Big Five Personality Traits (OCEAN)', shortTitle:'Big Five OCEAN', icon:'🌊',
+  color:'#10B981', color2:'#06B6D4', gradient:'linear-gradient(135deg,#10B981,#06B6D4)',
+  badge:'Big Five OCEAN', badgeBg:'rgba(16,185,129,0.18)', badgeColor:'#a7f3d0',
+  time:'10–14 min',
+  desc:'Rate how much you agree with each statement. Be honest — there are no good or bad scores. The Big Five is the most scientifically validated personality framework in psychology.',
+  warning:null, qtype:'likert5b', labels:['Strongly\nDisagree','Disagree','Neutral','Agree','Strongly\nAgree'],
+  possibleResults:['Openness Score','Conscientiousness Score','Extraversion Score','Agreeableness Score','Neuroticism Score'],
+  questions:[
+    {t:'I love trying new experiences, foods, places, or activities.',cat:'O',rev:false},
+    {t:'I often daydream, fantasize, or get lost in creative thoughts.',cat:'O',rev:false},
+    {t:'I am deeply moved by art, music, poetry, or natural beauty.',cat:'O',rev:false},
+    {t:'I enjoy exploring abstract philosophical or intellectual ideas.',cat:'O',rev:false},
+    {t:'I love learning about different cultures, histories, and worldviews.',cat:'O',rev:false},
+    {t:'I find variety and novelty far more stimulating than routine.',cat:'O',rev:false},
+    {t:'I often see beauty or significance in things others find ordinary.',cat:'O',rev:false},
+    {t:'I\'m open to questioning conventional ideas and exploring unconventional perspectives.',cat:'O',rev:false},
+    {t:'I always complete tasks on time and follow through on commitments.',cat:'C',rev:false},
+    {t:'I keep my personal spaces and systems well-organized.',cat:'C',rev:false},
+    {t:'I set clear goals and work systematically and persistently to achieve them.',cat:'C',rev:false},
+    {t:'I plan ahead thoroughly rather than acting on impulse.',cat:'C',rev:false},
+    {t:'Others can rely on me to do what I say I will do.',cat:'C',rev:false},
+    {t:'I pay close, careful attention to details in my work.',cat:'C',rev:false},
+    {t:'I maintain a consistent daily schedule and productive routines.',cat:'C',rev:false},
+    {t:'I rarely make careless mistakes — I double-check important things.',cat:'C',rev:false},
+    {t:'I feel energized and recharged after spending time with a group of people.',cat:'E',rev:false},
+    {t:'I genuinely enjoy large social gatherings and meeting new people.',cat:'E',rev:false},
+    {t:'I am naturally talkative and expressive in most social situations.',cat:'E',rev:false},
+    {t:'I am assertive and comfortable taking the lead in groups.',cat:'E',rev:false},
+    {t:'I experience positive emotions easily and am generally upbeat.',cat:'E',rev:false},
+    {t:'I actively seek out excitement, thrills, and stimulating experiences.',cat:'E',rev:false},
+    {t:'I strongly prefer activities that involve other people over solo pursuits.',cat:'E',rev:false},
+    {t:'I tend to be enthusiastic, expressive, and high-energy.',cat:'E',rev:false},
+    {t:'I genuinely care about others\' well-being and happiness.',cat:'A',rev:false},
+    {t:'I cooperate readily and actively try to avoid unnecessary conflict.',cat:'A',rev:false},
+    {t:'I naturally assume good intentions in people and extend trust easily.',cat:'A',rev:false},
+    {t:'I understand and feel others\' emotions deeply and easily.',cat:'A',rev:false},
+    {t:'I am generous with my time, energy, and resources.',cat:'A',rev:false},
+    {t:'I am patient with people\'s mistakes and genuinely forgive easily.',cat:'A',rev:false},
+    {t:'When others raise good points, I happily revise my position.',cat:'A',rev:false},
+    {t:'Conflict or tension around me feels genuinely uncomfortable.',cat:'A',rev:false},
+    {t:'I experience worry, anxiety, or stress quite frequently.',cat:'N',rev:false},
+    {t:'My mood shifts noticeably based on daily events and interactions.',cat:'N',rev:false},
+    {t:'I often feel tense, on edge, or emotionally unsettled.',cat:'N',rev:false},
+    {t:'Setbacks hit me hard and it takes me a while to bounce back.',cat:'N',rev:false},
+    {t:'I\'m quite sensitive to criticism and negative feedback from others.',cat:'N',rev:false},
+    {t:'I tend to overthink and ruminate on problems or past mistakes.',cat:'N',rev:false},
+    {t:'I frequently feel self-conscious or insecure in social situations.',cat:'N',rev:false},
+    {t:'My emotional reactions to difficult events tend to be strong and lasting.',cat:'N',rev:false},
+  ],
+  calculate(answers){
+    const scores={O:0,C:0,E:0,A:0,N:0};
+    const counts={O:0,C:0,E:0,A:0,N:0};
+    this.questions.forEach((q,i)=>{
+      const v=answers[i]||3;
+      const score=q.rev?(6-v):v;
+      scores[q.cat]+=score;counts[q.cat]++;
+    });
+    const pcts={};
+    Object.keys(scores).forEach(k=>{pcts[k]=Math.round(((scores[k]-counts[k])/(counts[k]*4))*100);});
+    return{scores,pcts};
+  }
+},
+
+/* ---- COMPAT ---- */
+compat:{
+  title:'Couple Compatibility Assessment', shortTitle:'Compatibility', icon:'💑',
+  color:'#F59E0B', color2:'#F97316', gradient:'linear-gradient(135deg,#F59E0B,#F97316)',
+  badge:'Couples Assessment', badgeBg:'rgba(245,158,11,0.18)', badgeColor:'#fde68a',
+  time:'8–12 min',
+  desc:'Think about your current or most recent significant relationship. Rate each statement honestly. If you\'re single, answer based on your ideal relationship or what you\'ve experienced.',
+  warning:null, qtype:'likert5b', labels:['Strongly\nDisagree','Disagree','Neutral','Agree','Strongly\nAgree'],
+  possibleResults:['Growing Distance','Building Blocks','Strong Foundation','Deep Bond','Soulmate Connection'],
+  questions:[
+    {t:'We openly share our feelings, hopes, and fears without fear of judgment.',cat:'comm'},
+    {t:'My partner listens attentively and truly understands what I\'m trying to say.',cat:'comm'},
+    {t:'When we disagree, we discuss it calmly and respectfully.',cat:'comm'},
+    {t:'I feel fully heard, understood, and valued in this relationship.',cat:'comm'},
+    {t:'We check in regularly about each other\'s emotional well-being.',cat:'comm'},
+    {t:'I can communicate my needs and boundaries clearly and comfortably.',cat:'comm'},
+    {t:'I feel safe being completely vulnerable and honest with my partner.',cat:'comm'},
+    {t:'We share similar visions for major life goals (family, lifestyle, career, finances).',cat:'vals'},
+    {t:'Our financial values and spending habits are compatible enough not to cause serious friction.',cat:'vals'},
+    {t:'We have aligned or respectfully compatible views on having (or not having) children.',cat:'vals'},
+    {t:'Our beliefs, values, or spiritual views are compatible and mutually respected.',cat:'vals'},
+    {t:'We have healthy, compatible views on relationships with extended family and in-laws.',cat:'vals'},
+    {t:'We hold shared core values around honesty, integrity, and how we treat people.',cat:'vals'},
+    {t:'Our long-term visions for the future feel genuinely aligned and exciting together.',cat:'vals'},
+    {t:'I feel completely emotionally safe and secure within this relationship.',cat:'trust'},
+    {t:'I trust my partner fully to be faithful, honest, and transparent with me.',cat:'trust'},
+    {t:'I feel no need to monitor my partner\'s phone, location, or interactions.',cat:'trust'},
+    {t:'My partner consistently respects my personal boundaries without me having to repeat myself.',cat:'trust'},
+    {t:'I feel deeply confident in my partner\'s commitment and dedication to us.',cat:'trust'},
+    {t:'We handle each other\'s vulnerabilities and secrets with complete care and respect.',cat:'trust'},
+    {t:'I genuinely believe my partner always has my best interests at heart.',cat:'trust'},
+    {t:'We maintain deep, meaningful emotional intimacy and closeness.',cat:'inti'},
+    {t:'Our physical connection feels satisfying, mutual, and respectful.',cat:'inti'},
+    {t:'We genuinely enjoy spending time together — it doesn\'t feel like an obligation.',cat:'inti'},
+    {t:'We actively support each other\'s individual growth, goals, and independence.',cat:'inti'},
+    {t:'We regularly express appreciation, affection, and gratitude toward each other.',cat:'inti'},
+    {t:'We create meaningful shared experiences, memories, and rituals together.',cat:'inti'},
+    {t:'We feel like best friends as well as romantic partners.',cat:'inti'},
+    {t:'We resolve conflicts without resorting to contempt, cruelty, or personal attacks.',cat:'conf'},
+    {t:'Neither of us uses the silent treatment or emotional withdrawal as a weapon.',cat:'conf'},
+    {t:'When we hurt each other, we offer sincere apologies and truly forgive.',cat:'conf'},
+    {t:'When things get too heated, we take healthy breaks and return to resolve the issue.',cat:'conf'},
+    {t:'In arguments, we focus on solving the problem — not on "winning."',cat:'conf'},
+    {t:'We don\'t bring up old grievances when arguing about new issues.',cat:'conf'},
+    {t:'After resolving conflict, we feel closer and more connected than before.',cat:'conf'},
+  ],
+  calculate(answers){
+    const cats={comm:0,vals:0,trust:0,inti:0,conf:0};
+    this.questions.forEach((q,i)=>{cats[q.cat]+=(answers[i]||1);});
+    const total=Object.values(cats).reduce((s,v)=>s+v,0);
+    const pct=Math.round(((total-35)/(175-35))*100);
+    const catPcts={};
+    Object.keys(cats).forEach(k=>{catPcts[k]=Math.round(((cats[k]-7)/(35-7))*100);});
+    return{total,pct,cats,catPcts};
+  }
+}
+
+}; // end QUIZZES
+
+/* ====================================================
+   PROFILE DATA
+==================================================== */
+
+/* ---------- TRAUMA PROFILES ---------- */
+const TRAUMA_PROFILES = {
+resilient:{name:'The Resilient Spirit',tagline:'Your foundation is solid — now build on it intentionally.',emoji:'🌱',
+desc:'Your childhood, while not without its challenges, provided you with enough safety, stability, and love to develop a secure foundation. You carry relatively few trauma-based patterns, and your nervous system learned early on that the world is largely a safe and trustworthy place. This is a genuine gift — and one worth honoring.',
+insight:'Even with low ACE scores, most people carry some inherited emotional patterns or family wounds worth exploring. Awareness allows you to break any subtle cycles before they take root.',
+strengths:['Natural emotional resilience — you bounce back from adversity effectively','Capacity for secure attachment in relationships','Generally positive internal working model of yourself and others','Lower baseline anxiety and stress reactivity','Ability to trust others and extend trust appropriately'],
+patterns:['May underestimate the importance of emotional processing for others','Could unintentionally minimize others\' trauma responses','Possible difficulty relating to those with complex trauma histories','May have blind spots around inherited family patterns that operated subtly'],
+relationships:'You typically attract and maintain healthy relationships with relative ease. You\'re capable of genuine intimacy, can set boundaries without excessive guilt, and generally communicate your needs. Your challenge is understanding partners or loved ones who carry deeper wounds — their responses may feel disproportionate or confusing without context.',
+steps:[
+  {title:'Practice preventive self-reflection',desc:'Even thriving people carry unconscious patterns. Weekly journaling or monthly therapy check-ins help you spot subtle inherited beliefs before they cause problems.'},
+  {title:'Develop trauma literacy',desc:'Read "The Body Keeps the Score" by Bessel van der Kolk. Understanding trauma physiology makes you a more compassionate partner, parent, and friend.'},
+  {title:'Map your family system',desc:'Do genogram work — trace emotional patterns, relationship dynamics, and wounds across 2–3 generations. Healing can happen upstream before problems emerge.'},
+  {title:'Cultivate emotional vocabulary',desc:'Expand your ability to name nuanced emotions. Apps like "How We Feel" or Brené Brown\'s atlas of emotions help you develop richer emotional fluency.'},
+  {title:'Become a cycle-breaker intentionally',desc:'Your advantage is that you can choose healing proactively rather than reactively. Identify one pattern from your family of origin you want to consciously break.'},
+],
+affirmations:['My stable foundation is something I can build on — not take for granted.','I have the capacity to be a safe harbor for those who didn\'t have what I had.','Understanding others\' pain expands my own emotional range and humanity.','My peace is powerful — and I can share it with the world.']
+},
+healing:{name:'The Healing Seeker',tagline:'You\'ve felt the weight — now you\'re ready to set it down.',emoji:'🌿',
+desc:'You experienced some adverse childhood experiences that left real imprints on your emotional patterns, nervous system, and beliefs about yourself and others. These experiences weren\'t your fault, and the ways you adapted to survive them made complete sense at the time. Now, as an adult, some of those adaptations may be creating friction in your relationships, self-worth, or ability to feel safe.',
+insight:'The most important shift is from "what\'s wrong with me?" to "what happened to me?" Your patterns are intelligent responses to real challenges — not character flaws.',
+strengths:['Deep empathy born from personal experience of pain','Developing self-awareness and genuine desire for growth','Strong motivation to understand yourself and break cycles','Capacity to connect meaningfully with others who have struggled','Emerging emotional resilience shaped by real adversity'],
+patterns:['May have a negativity bias or tend to anticipate problems','Occasional difficulty with trust — especially in new relationships','Possible people-pleasing tendencies as a survival adaptation','May struggle with self-compassion, being harder on yourself than others','Sometimes difficulty identifying or expressing your own needs'],
+relationships:'You\'re capable of deep, meaningful connection — often more than people who haven\'t been through difficulty. But childhood experiences may have shaped beliefs like "I\'m too much," "I\'ll be abandoned," or "I have to earn love." These beliefs show up in relationship patterns. The good news: they can be rewritten with consistent, supportive relationships and intentional inner work.',
+steps:[
+  {title:'Work with a trauma-informed therapist',desc:'Even 8–12 sessions of EMDR, somatic therapy, or IFS (Internal Family Systems) can produce significant shifts in trauma patterns. It\'s the most high-ROI investment you can make.'},
+  {title:'Learn to identify your nervous system states',desc:'Study the Polyvagal Theory. Learn to recognize when you\'re in fight/flight/freeze and develop a personalized toolkit (breathwork, cold water, movement) to regulate quickly.'},
+  {title:'Rewrite your core narrative',desc:'Identify your 3 most painful core beliefs (e.g., "I\'m unlovable," "I\'m not enough"). For each one, find 5 concrete pieces of evidence that directly contradict it. Repeat daily.'},
+  {title:'Build a regulation-first daily practice',desc:'30 minutes daily of somatic movement (yoga, dance, walking), mindfulness, or journaling before engaging with stressors. Regulation is the foundation everything else rests on.'},
+  {title:'Practice earned security in relationships',desc:'Identify 1–2 safe, consistent people in your life and practice being incrementally more vulnerable. Each positive experience updates your nervous system\'s belief about trust.'},
+],
+affirmations:['What happened to me was not my fault. What I do about it is my responsibility — and my power.','My past shaped me but does not define my future.','I am allowed to need support, rest, and gentleness.','Healing is not linear — and that\'s okay. Every step counts.']
+},
+warrior:{name:'The Inner Warrior',tagline:'You\'ve survived more than most. Now it\'s time to thrive.',emoji:'⚔️',
+desc:'Your childhood contained significant adversity across multiple domains. The fact that you\'re here, functioning, seeking understanding, and reading this is itself evidence of extraordinary inner strength. You developed a powerful survival system — hypervigilance, emotional suppression, self-reliance, or people-pleasing — that served a very real purpose then. In adulthood, these same systems can create challenges in relationships, emotional wellbeing, and sense of self.',
+insight:'Your greatest strengths — resilience, depth, empathy, the ability to endure — were forged in your hardest moments. Healing isn\'t about erasing your past; it\'s about integrating it so it becomes fuel rather than a weight.',
+strengths:['Extraordinary resilience built through genuine adversity','Deep well of empathy and compassion for suffering','High capacity for meaning-making and personal insight','Ability to function under pressure that others would find overwhelming','Strong drive for growth and self-understanding','Unique depth of character and emotional complexity'],
+patterns:['High-functioning anxiety or hypervigilance that\'s often invisible to others','Difficulty trusting people and expecting abandonment or harm','Possible emotional numbing or dissociation as a protective strategy','Chronic self-criticism — an inner critic that was once an adaptation','Difficulty with self-care — you may feel you don\'t deserve rest or support','Possible tendency toward either clinging or distancing in relationships'],
+relationships:'Your relational patterns are deeply shaped by childhood experiences. You may oscillate between intense closeness and sudden withdrawal. You may test people unconsciously. You may attract relationships that feel familiar but repeat old wounds. The transformative truth: every healthy relationship you build rewires your nervous system\'s model of what\'s possible.',
+steps:[
+  {title:'Commit to trauma-focused therapy as a non-negotiable',desc:'EMDR, Somatic Experiencing, IFS, or trauma-focused CBT with a specialized therapist. This is the single most impactful step. Budget, insurance, or sliding-scale options exist.'},
+  {title:'Establish daily nervous system regulation',desc:'20–30 minutes daily: breathwork (box breathing, 4-7-8), cold exposure, vigorous exercise, or vagal toning exercises. Your nervous system learned to live in threat mode — teach it safety.'},
+  {title:'Create a "window of tolerance" map',desc:'Identify your personal triggers, early warning signs, and what helps you return to regulation. Share this map with 1–2 trusted people. Having language for your states builds connection.'},
+  {title:'Do parts work — meet your inner protectors',desc:'Every pattern that causes problems (shutting down, rage, people-pleasing) is a part of you trying to protect you. Get curious: "What are you afraid would happen if you stopped protecting me this way?"'},
+  {title:'Build a trauma-informed support ecosystem',desc:'1 therapist + 1 peer support group + 1 trauma-informed book per quarter + daily journaling. Healing requires multiple, layered sources of support, not just one.'},
+],
+affirmations:['I am not broken. I am brilliantly adapted. Now I can choose new adaptations.','My healing helps everyone who comes after me — my children, my community, my lineage.','I survived every single hard day so far. I can face this healing too.','I deserve safety, love, and peace — not because I\'ve earned it, but because I exist.']
+},
+survivor:{name:'The Trauma Survivor',tagline:'The weight you carry is real. Healing is real too.',emoji:'🔥',
+desc:'Your childhood involved significant, chronic adversity that has had a profound impact on how your nervous system, brain, and body function today. Complex trauma — experiencing multiple types of adversity over time — changes neurobiology: your brain\'s threat-detection system, your stress hormones, and even your capacity for emotional regulation. This is not a character flaw. It\'s a physiological response to an environment that was genuinely unsafe.',
+insight:'Research shows that the brain\'s neuroplasticity means healing is possible at any age. The biological changes caused by trauma can be meaningfully reversed with the right therapeutic approach, consistent practice, and relational safety.',
+strengths:['Depth of resilience that most people cannot imagine','Extraordinary empathy and insight into human suffering','Capacity for profound meaning-making from extreme difficulty','Survivor\'s wisdom and post-traumatic growth potential','Fierce protectiveness of those you love','Ability to find beauty and hope in the smallest things'],
+patterns:['Complex PTSD symptoms: emotional flashbacks, inner critic, difficulty with identity','Significant difficulty with self-trust and identifying your own needs','Possible dissociation as a primary coping mechanism','Relational patterns: fawn, fight, flight, or freeze responses','Possible physical symptoms: chronic pain, digestive issues, immune dysfunction','Shame as a core emotion rather than guilt'],
+relationships:'Relationship patterns from complex trauma can be particularly challenging — oscillating between intense need for closeness and desperate fear of it, struggling to believe you\'re truly lovable, or unconsciously recreating familiar dynamics. Recovery is possible and does happen. The path involves building earned security through consistently safe relationships combined with deep therapeutic work.',
+steps:[
+  {title:'Immediate: Stabilize before processing',desc:'Phase 1 of trauma recovery is stabilization — safety, basic needs, and crisis management before any deep trauma processing. Work with a therapist on building coping skills and a stable daily routine first.'},
+  {title:'Specialized trauma therapy',desc:'Seek a therapist trained specifically in complex trauma or CPTSD — EMDR, Somatic Experiencing, IFS, or AEDP. The relationship with the therapist IS the therapy. Find someone you feel safe with.'},
+  {title:'Daily body-based regulation practice',desc:'Trauma lives in the body. 30 min daily of: yoga nidra, dance/movement, boxing, cold showers, progressive muscle relaxation, or somatic shaking. This is not optional — it\'s medicine.'},
+  {title:'Build one safe relationship',desc:'Identify one person — or community — where you can practice safety incrementally. Online CPTSD communities can be powerful for reducing shame and isolation.'},
+  {title:'Reconnect with your body\'s wisdom',desc:'Trauma disconnects you from bodily signals. Practice: before eating, pause and ask "am I hungry?" Before agreeing to something, check your body for tension or expansion. Trust your body\'s language again.'},
+],
+affirmations:['The fact that I am still here is proof of extraordinary strength.','My nervous system learned fear to protect me. It can also learn safety.','I am not my trauma. My trauma is something that happened to me.','I deserve the same compassion I would offer someone I love who had been through this.']
+},
+phoenix:{name:'The Phoenix',tagline:'From the deepest fire comes the most extraordinary transformation.',emoji:'🦅',
+desc:'You experienced severe, pervasive childhood adversity across multiple domains over an extended period. What you endured was not okay, was not your fault, and would have broken most people — and yet here you are, seeking understanding and growth. The very fact that you\'re willing to look at your past honestly represents extraordinary courage. Healing from severe complex trauma is a long journey, but it is not only possible — it is happening for thousands of people right now.',
+insight:'Post-traumatic growth research shows that people who experienced the most severe trauma and engaged in deep healing work often develop the most profound wisdom, compassion, and capacity for meaning. Your fire forges something remarkable.',
+strengths:['Survival strength that transcends ordinary human experience','Profound empathy forged in real suffering','Extraordinary capacity for meaning-making and purpose','Post-traumatic growth potential at the deepest level','Ability to help and understand others who are in deep pain','Fierce love and protectiveness toward those who suffer'],
+patterns:['Likely experiencing complex PTSD — a distinct condition from acute PTSD','Significant nervous system dysregulation across multiple domains','Possible challenges with identity, emotional regulation, and relational stability','Physical body carries the trauma — chronic conditions are common','Shame at the core of identity that needs direct therapeutic work','Possible dissociative coping that protected survival but now limits living'],
+relationships:'Relationships may feel simultaneously desperately needed and terrifyingly dangerous. Patterns of idealization/devaluation, intense fear of abandonment, and difficulty trusting may create turbulent relational experiences. Healing is not about "fixing" yourself — it\'s about learning, slowly and safely, that the world contains people who will not hurt you.',
+steps:[
+  {title:'Find your trauma-informed therapeutic team',desc:'This level of healing often requires multiple supports: a primary trauma therapist, a psychiatrist for medication evaluation if needed, and peer support. Start where you can afford to start.'},
+  {title:'Radical stabilization first',desc:'Before trauma processing: build 3 months of physical safety, basic routine, 1 safe relationship, crisis plan, and somatic regulation skills. Build the container before filling it.'},
+  {title:'Daily compassion practice for your younger self',desc:'Spend 5 minutes daily imagining the child who experienced what you did. Offer that child what they needed — safety, warmth, presence. This directly rewires shame-based neural pathways over time.'},
+  {title:'Name and honor your survival system',desc:'Every pattern that causes problems was a heroic adaptation. Your hypervigilance, your emotional detachment, your perfectionism — they saved you. With a therapist, thank them and slowly help them retire.'},
+  {title:'Find your phoenix purpose',desc:'Many survivors of severe trauma discover a profound calling to help others through their own transformational journey. Healing for yourself is more than enough. But purpose accelerates healing.'},
+],
+affirmations:['I survived the unsurvivable. I can survive the healing.','My past does not get the last word on who I become.','I am worthy of safety, love, and a life that feels genuinely good.','Every act of self-care is a radical act of resistance against everything that tried to diminish me.']
+}
+};
+
+/* ---------- LOVE PROFILES ---------- */
+const LOVE_PROFILES = {
+WA:{name:'Words of Affirmation',emoji:'💬',tagline:'You receive love through authentic, heartfelt expression.',
+desc:'Your soul is nourished by genuine verbal affirmation. You feel most loved when people use words purposefully — expressing appreciation, praise, encouragement, and love directly and specifically. Silence, criticism, or indifference cuts deeply, while a single sincere word can change everything.',
+fills:['Sincere compliments and specific praise','Verbal "I love you" and expressions of affection','Encouragement during struggles and challenges','Written messages — notes, texts, letters, cards','Public acknowledgment or recognition','Hearing what specifically others love about you'],
+drains:['Harsh criticism or unkind words (linger long)','Silence or emotional unavailability','Dismissiveness or sarcastic remarks','Being taken for granted without verbal acknowledgment'],
+relationships:'You thrive with expressive, verbally generous partners. You need a partner who understands that words aren\'t just nice — they\'re essential oxygen for you. Your challenge is learning that partners with different love languages may show deep love through other means.',
+career:['Writing, coaching, or counseling','Teaching or public speaking','Marketing, storytelling, or media','Roles involving mentorship and feedback'],
+steps:[
+  {title:'Teach your love language explicitly',desc:'Create a "love manual" — write 10 specific phrases, moments, or contexts where verbal affirmation would mean the most to you. Share it rather than hoping others will guess.'},
+  {title:'Practice receiving without deflecting',desc:'Many Words of Affirmation people deflect compliments. Practice receiving fully: make eye contact, breathe, and simply say "Thank you — that means so much."'},
+  {title:'Build your inner affirmer',desc:'Develop a daily affirmation practice — but make them specific and evidence-based, not generic. Your reliance on external words can leave you vulnerable when they\'re absent.'},
+  {title:'Learn to read others\' love languages',desc:'If your partner\'s love language is Acts of Service, their doing things for you IS their "I love you." Build a translation layer: "When they _____, it means they love me."'},
+  {title:'Express your love language to others',desc:'Become a generous giver of sincere compliments, specific praise, and encouraging notes. The more freely you give your language, the more it returns to you.'},
+],
+affirmations:['My need for verbal affirmation is not neediness — it\'s self-knowledge.','I can teach the people I love how to love me well.','I am worthy of words that are warm, specific, and true.']
+},
+AS:{name:'Acts of Service',emoji:'🛠',tagline:'You feel love in what people do, not just what they say.',
+desc:'For you, actions are the ultimate declaration of love. When someone rolls up their sleeves and does something for you — especially without being asked — it speaks directly to your heart. You notice who shows up. You notice who follows through. Promises mean little without actions to back them up.',
+fills:['Practical help done without being asked','Follow-through on commitments and promises','Someone managing tasks when you\'re overwhelmed','Acts that demonstrate "I notice what you need"','Consistent, reliable helpfulness over time'],
+drains:['Empty promises with no action','Laziness or lack of initiative in shared responsibilities','Having to ask for help repeatedly','Partners who talk but don\'t act'],
+relationships:'You love through action and need to see love reflected back in action. You\'re a reliable, dependable partner who naturally expresses love by doing. Your challenge: resentment builds when your service isn\'t reciprocated. Learning to ask clearly before frustration builds is essential.',
+career:['Project management and operational roles','Caregiving, healthcare, or social work','Engineering, trades, or hands-on problem solving','Entrepreneurship or service-oriented business'],
+steps:[
+  {title:'Name what specific acts matter most',desc:'Not all acts of service feel equally significant. Make a list: "These 5 specific things would make me feel profoundly loved." Share this list rather than hoping your partner figures it out.'},
+  {title:'Address the expectation-resentment cycle',desc:'Practice the sentence: "When you did X, I felt really loved. And I\'ve been wanting to ask for help with Y." Say it before resentment builds, not after.'},
+  {title:'Recognize others\' love forms',desc:'If your partner is a Words person, their absence of action isn\'t indifference — they\'re speaking a different dialect. Ask: what ARE they doing that communicates care?'},
+  {title:'Avoid the "service martyr" pattern',desc:'People with this language can fall into doing everything themselves while feeling quietly unloved. Practice delegation and acceptance of imperfect help.'},
+  {title:'Receive as gracefully as you give',desc:'Practice accepting help without immediately reciprocating or deflecting. "Thank you — I really needed that" is a complete sentence. Let people show up for you.'},
+],
+affirmations:['My love is shown in what I do — and I deserve the same in return.','I can ask for what I need. Asking is not weakness.','Love without action is just words. And I value substance.']
+},
+RG:{name:'Receiving Gifts',emoji:'🎁',tagline:'You feel love in the beautiful language of thoughtful tokens.',
+desc:'For you, a gift is never just an object — it\'s a tangible symbol of love, thought, and presence. The most powerful gifts aren\'t expensive; they\'re thoughtful. When someone remembers what you mentioned months ago and finds it, or brings back a souvenir thinking of you — that\'s when you feel truly seen and beloved.',
+fills:['Thoughtful gifts chosen with you specifically in mind','Being remembered on special occasions — and random days','Surprise gestures with no particular occasion','Meaningful mementos and keepsakes','The clear evidence that someone was thinking of you'],
+drains:['Forgotten birthdays, anniversaries, or special occasions','Generic, impersonal gifts showing no thought','Partners who find gift-giving unnecessary or frivolous','Being told "I don\'t believe in gifts" without an alternative'],
+relationships:'You\'re often deeply thoughtful about gifts for others and remember what people love. You may struggle in relationships with partners who dismiss this love language as "materialistic" — which profoundly misses the point. Your challenge is communicating that this isn\'t about the object\'s value; it\'s about visible evidence of thought and love.',
+career:['Event planning, hospitality, or design','Retail, styling, or curation roles','Marketing and brand strategy','Creative gifting, content creation, or influencer roles'],
+steps:[
+  {title:'Educate — not demand',desc:'Help your partner understand: "When you give me a small thing you thought I\'d love, it makes me feel genuinely cherished. It\'s about the thought." Share specific examples of what has moved you.'},
+  {title:'Provide a "gift guide" for loved ones',desc:'Create a running list of things you\'d love — books, experiences, foods, objects. Share it. This isn\'t unromantic; it ensures people who love you can express it in your language.'},
+  {title:'Notice the symbolic value of existing gifts',desc:'You may already have meaningful tokens of love around you that you\'ve stopped seeing. Revisit them. Let them remind you of the love they represent.'},
+  {title:'Give yourself meaningful gifts',desc:'Practice receiving from yourself. When you accomplish something significant, mark it with a meaningful object. This builds internal security so external gifts enhance love rather than validate it.'},
+  {title:'Expand your definition of "gift"',desc:'An unexpected meal prepared for you, a handwritten letter, a song — these are all gifts. Expand your awareness of when love is being given in gift form.'},
+],
+affirmations:['My love language is not about things — it\'s about being remembered.','I deserve to be thought of. I deserve to be seen.','The most powerful gifts are those that say: I know you. I see you.']
+},
+QT:{name:'Quality Time',emoji:'⏳',tagline:'You feel love when someone gives you the gift of their full presence.',
+desc:'For you, being truly present with someone is the highest form of love. Not sitting in the same room on separate devices — but genuine, undivided attention. Eye contact. Active listening. Being chosen above distractions. When someone truly carves out time for you and fills it with their full attention, you feel profoundly loved and valued.',
+fills:['Undivided attention — phone away, eyes present','Being actively listened to and genuinely heard','Shared activities done together with presence','Regular one-on-one time that feels deliberate','Deep conversations about things that matter'],
+drains:['Cancelled plans or broken time commitments','Distracted time together (phone in hand, TV on)','Feeling like you\'re an item on someone\'s schedule','Partners who are physically present but emotionally absent'],
+relationships:'You\'re a deeply present, attentive partner who offers real quality of attention to those you love. Your relationships require consistent, distraction-free togetherness. Your challenge: you can interpret unavoidable schedule conflicts as rejection when they\'re simply logistics.',
+career:['Counseling, coaching, or therapeutic roles','Teaching or mentorship','Deep research, writing, or contemplative work','Community building or facilitation'],
+steps:[
+  {title:'Schedule sacred time intentionally',desc:'Block "technology-free connection time" in your calendar with key people. Treat it like a non-negotiable appointment. Don\'t leave your most important need to chance.'},
+  {title:'Communicate quality vs. quantity',desc:'Help loved ones understand: it\'s not about hours — it\'s about presence. One hour of genuinely focused connection feeds you more than a full day of distracted coexistence.'},
+  {title:'Create rituals of togetherness',desc:'Daily: morning coffee together without phones. Weekly: a standing date. Monthly: a new experience together. Rituals create reliable deposits in your love account.'},
+  {title:'Address cancelled plans proactively',desc:'When plans change, practice asking directly: "Can we reschedule for this week? I really miss our time together." Directness prevents resentment.'},
+  {title:'Be a model of full presence',desc:'Become known as someone who gives exceptional quality of attention. This creates a culture of presence in your relationships and naturally invites reciprocity.'},
+],
+affirmations:['My need for full presence is a gift — it invites people into deeper connection.','I deserve to be chosen, prioritized, and truly seen.','True togetherness heals me. I will protect and seek it.']
+},
+PT:{name:'Physical Touch',emoji:'🤲',tagline:'You feel love through the language of safe, caring physical connection.',
+desc:'Physical touch is your first language of love — not in an exclusively romantic sense, but as a fundamental channel for safety, warmth, and connection. A hand on your shoulder during a hard moment, a genuine hug, sitting close — these communicate love directly to your nervous system in ways that words or actions simply can\'t match.',
+fills:['Warm hugs — real ones, not perfunctory ones','Hand-holding and comfortable physical closeness','Reassuring touch during stress or difficulty','Physical presence — just being bodily near someone you love','Spontaneous affectionate touch (arm around shoulder, etc.)'],
+drains:['Physical distance or emotional coldness','Partners who rarely initiate or offer physical affection','Long stretches without any meaningful touch','Feeling physically isolated even in company'],
+relationships:'You\'re naturally warm, physically expressive, and affectionate — often the first to offer a hug or reach out to touch a friend\'s arm in comfort. You need a partner who is physically present and affectionate. Your challenge: you may interpret physical distance as rejection even when it\'s your partner\'s introversion or different love language.',
+career:['Healthcare, nursing, physical or occupational therapy','Massage therapy, yoga instruction, or bodywork','Dance, movement, or sports coaching','Caregiving, social work, or childcare'],
+steps:[
+  {title:'Communicate your need without shame',desc:'Practice the sentence: "I really need physical closeness today. Could we just cuddle for a bit?" Your need is valid and expressing it is an act of self-advocacy.'},
+  {title:'Create rituals of affectionate touch',desc:'Daily hello and goodbye hugs, hand-holding during walks, a hand on the shoulder while cooking. Build touch into the fabric of your daily connection.'},
+  {title:'Understand your partner\'s comfort with touch',desc:'Touch preferences vary widely. Have an open conversation about what types of touch feel comfortable and meaningful to each of you. Respect the full spectrum.'},
+  {title:'Meet your touch needs through multiple sources',desc:'Massage, dance classes, pets, or therapeutic bodywork can supplement your need for touch. Physical human connection has real health benefits — pursue them.'},
+  {title:'Distinguish comfort touch from anxious touch',desc:'When emotional anxiety rises, the urge for touch can intensify. Learn to regulate your nervous system through breathwork first, then seek connection from wholeness rather than anxiety.'},
+],
+affirmations:['Physical connection is a fundamental human need — not a weakness.','I communicate love through touch, and I deserve to receive it in return.','My body is a vehicle for love, safety, and deep human connection.']
+}
+};
+
+/* ---------- MBTI PROFILES (all 16) ---------- */
+const MBTI_PROFILES = {
+INTJ:{name:'The Architect',emoji:'♟',tagline:'Strategic, independent, and relentlessly visionary.',desc:'You are a rare blend of imaginative vision and decisive execution. Your mind is constantly architecting systems, futures, and solutions — often several steps ahead of everyone else. You hold yourself and others to exceptionally high standards, and while you can appear cold on the surface, you feel things deeply.',strengths:['Exceptional strategic and long-range thinking','Fiercely independent and self-directed','Highly analytical with outstanding pattern recognition','Disciplined and persistent in pursuing goals','Creative problem-solver who sees systems others miss'],blindspots:['Can appear arrogant or dismissive of others\' ideas','Difficulty with emotional expression and validation','Perfectionism that creates self-imposed paralysis','Overly critical of themselves and others'],relationships:'You seek partners who match your intellectual depth and respect your independence. You\'re loyal and committed once you decide someone is worth your investment — but that decision takes time.',careers:['Strategic consulting or executive leadership','Architecture, engineering, or systems design','Scientific research or academia','Entrepreneurship or innovation roles'],steps:[{title:'Develop emotional fluency as a strategic skill',desc:'Study nonviolent communication (NVC). Practice naming emotions in the moment. This enhances your leadership exponentially.'},{title:'Release the grip of perfectionism',desc:'Practice "good enough to ship" thinking. Done and improved beats perfect and never finished.'},{title:'Build rituals of vulnerability',desc:'Choose one safe relationship where you practice sharing not just thoughts, but actual feelings. Vulnerability is advanced social engineering for an INTJ.'},{title:'Honor the need for strategic rest',desc:'Create non-negotiable weekly downtime where productivity is explicitly forbidden. System maintenance for your most important asset.'},{title:'Teach as a growth accelerator',desc:'Teaching others forces you to slow down and encounter new perspectives. Mentor someone — your wisdom compounds when shared.'}]},
+INTP:{name:'The Logician',emoji:'🔭',tagline:'Curious, analytical, and endlessly hungry to understand.',desc:'Your mind is a relentless seeking machine, always hunting for the underlying logic of everything. You find more joy in the pursuit of understanding than in most achievements. Others experience you as quietly brilliant, often zoned out, and unexpectedly profound when you surface from thought.',strengths:['Exceptional analytical and logical reasoning','Deep, focused concentration on topics of interest','Intellectual humility — always willing to revise if logic demands','Creative in finding non-obvious solutions','Independence of thought — not easily swayed by consensus'],blindspots:['Can procrastinate execution indefinitely while thinking','May appear dismissive of others\' feelings','Condescending without intending to be','Difficulty completing projects — more excited by initiation'],relationships:'You seek partners who engage your mind and give you independence. Emotional demands can feel overwhelming. Deep down, you\'re extremely loyal and care profoundly — you just need help learning to show it in languages others recognize.',careers:['Mathematics, data science, or computational research','Philosophy, theoretical physics, or linguistics','Software architecture or systems engineering','Freelance consulting or strategy roles'],steps:[{title:'Build a completion system',desc:'Use the "two-minute rule" + time-blocking. Treat completion as the hardest intellectual challenge — because for you it is.'},{title:'Practice social emotional translation',desc:'Learn to ask "How does this make you feel?" before offering solutions. Practice holding the silence after asking.'},{title:'Externalize your thinking',desc:'Start a newsletter, blog, or public notes practice. Writing for an audience disciplines your thinking and connects your inner world to the outer one.'},{title:'Set artificial deadlines and public commitments',desc:'Commit publicly to a deliverable date. External accountability is your best friend.'},{title:'Develop embodied routines',desc:'Sleep, nutrition, and exercise directly enhance your cognitive performance. Don\'t skip these as unsexy — they\'re foundational.'}]},
+ENTJ:{name:'The Commander',emoji:'👑',tagline:'Bold, strategic, and born to lead.',desc:'You are one of the most naturally commanding personalities — decisive, visionary, and confident that virtually any obstacle can be overcome with enough intelligence and will. You see inefficiency and immediately see how to fix it. Your greatest gift and edge: you\'d rather have an honest, productive conflict than polite, comfortable stagnation.',strengths:['Exceptional leadership and organizational capacity','Strategic long-range vision combined with decisive action','High drive, energy, and resilience under pressure','Inspiring and motivating when aligned with a vision','Confident, direct communication that gets things done'],blindspots:['Can bulldoze others\' feelings and ideas','May struggle to tolerate inefficiency in others','Can become controlling when stressed','Difficulty acknowledging vulnerability or mistakes'],relationships:'You need a partner who is confident, independent, and can match your energy without being dominated by it. Intellectual sparring, mutual respect for ambition, and honest communication are non-negotiables.',careers:['Executive leadership, CEO, or entrepreneurship','Law, politics, or strategic consulting','Investment banking or venture capital','Military leadership or organizational transformation'],steps:[{title:'Develop your emotional leadership',desc:'Study servant leadership. Ask your team: "What obstacles can I remove for you?" weekly. This shifts your power from intimidating to magnetic.'},{title:'Practice active listening as a discipline',desc:'Set a rule: before offering your perspective, summarize what you heard. This slows you down enough to actually receive input.'},{title:'Build psychological safety around you',desc:'Practice the response: "That\'s interesting — tell me more." Without qualification, argument, or dismissal. The best ideas reach you only when people feel safe.'},{title:'Honor your rest as a strategic imperative',desc:'Elite performers rest like athletes. Build non-negotiable recovery into your system as deliberately as you build your strategy.'},{title:'Develop a growth edge in humility',desc:'Practice publicly saying "I was wrong" and "You were right" at least once per week. This does not diminish your authority — it dramatically increases your credibility.'}]},
+ENTP:{name:'The Debater',emoji:'⚡',tagline:'Inventive, quick-witted, and energized by possibility.',desc:'You are the intellectual spark in every room — quick, provocative, bursting with ideas, and energized by the mental game of debate. You see possibility everywhere and can construct a compelling argument for almost any position. You\'re at your best when challenging the status quo, generating options, and inspiring others with your infectious enthusiasm for what could be.',strengths:['Extraordinary capacity for creative and lateral thinking','Intellectual agility — rapidly synthesizing new information','Charismatic and energizing presence','Entrepreneurial vision with high risk tolerance','Thrives on innovation and disruption'],blindspots:['Argument for argument\'s sake can exhaust and alienate others','Difficulty following through on the many ideas generated','Can appear insensitive or dismissive in debate','Bored easily — consistency is genuinely challenging'],relationships:'You need a partner who can keep up with your intellectual energy and doesn\'t take your devil\'s advocacy personally. You\'re exciting and stimulating to be with — and also unpredictable. Your growth edge: learning that not every conversation needs to be a debate.',careers:['Entrepreneurship or innovation consulting','Law, debate, or advocacy','Marketing, advertising, or creative strategy','Academia, journalism, or media'],steps:[{title:'Channel your debate energy toward alignment',desc:'Ask: "Am I trying to find truth, or am I trying to win?" The former energizes relationships. The latter slowly destroys them.'},{title:'Create a "follow-through system"',desc:'Create an "idea capture" system — then monthly, choose ONE idea and commit to a 90-day execution sprint.'},{title:'Practice "yes-and" instead of "yes-but"',desc:'"Yes, and here\'s how we could make it even better" is far more powerful than "but here\'s why that won\'t work."'},{title:'Develop emotional range',desc:'Practice weekly: "What am I feeling right now?" — then resist the urge to explain it away. Feelings are data.'},{title:'Build deep expertise in one area',desc:'Choose one domain and commit to becoming one of the top practitioners in your region. Expertise focuses your remarkable energy.'}]},
+INFJ:{name:'The Advocate',emoji:'🌸',tagline:'Rare, perceptive, and quietly transformative.',desc:'You are the rarest personality type — a combination of deep intuition, genuine warmth, and a powerful internal value system that guides everything you do. You see people with unusual depth and often understand them better than they understand themselves. You carry a vision for a better world and feel a quiet but intense calling to contribute something meaningful to it.',strengths:['Exceptional insight into people and complex dynamics','Deep empathy combined with strategic thinking','Clear internal compass and unwavering values','Ability to inspire and move people toward meaningful change','Capacity for profound depth of thought and feeling'],blindspots:['"Door slam" — withdrawing completely when deeply hurt','Perfectionism in their mission and vision','Difficulty setting limits without guilt','Can absorb others\' emotional pain too readily','Tendency toward burnout from overgiving'],relationships:'You give deeply and love profoundly — but you need a partner who can match your emotional depth and respect your inner life. You\'re perceptive enough to sometimes know your partner better than they know themselves, which must be handled with care.',careers:['Counseling, psychology, or therapy','Writing, literary arts, or creative fields','Academic research or philosophy','Advocacy, social justice, or nonprofit leadership'],steps:[{title:'Honor the sacredness of your energy',desc:'Create a weekly energy audit: list what fills you, what drains you. Ruthlessly minimize the drains. You cannot pour from empty.'},{title:'Practice early, clear boundary communication',desc:'The door slam happens because INFJs absorb too much before expressing limits. Practice: "This is difficult for me because..." before it becomes unbearable.'},{title:'Distinguish your feelings from others\'',desc:'Daily practice: list 3 emotions that are yours specifically, not received from others. Build your emotional sovereignty.'},{title:'Share your vision publicly',desc:'Don\'t let fear of imperfection keep your remarkable perspective private. Start a blog, speak, write, teach.'},{title:'Receive as generously as you give',desc:'Practice saying "I need..." specifically and without apology. Let the people who love you experience the joy of actually supporting you.'}]},
+INFP:{name:'The Mediator',emoji:'🦋',tagline:'Idealistic, empathetic, and driven by an inner flame of meaning.',desc:'You live in a world rich with inner meaning, idealism, and emotional depth. You feel deeply — both your own emotions and those of people around you — and you navigate life guided by a powerful internal compass of values. Your imagination is extraordinary, and you have a gift for seeing the best in people and believing in what could be.',strengths:['Genuine, deep empathy and compassionate understanding','Remarkable creativity and rich inner imaginative life','Authentic, values-driven integrity','Ability to connect with others\' deepest feelings','Natural capacity for healing conversations'],blindspots:['Can idealize people and be deeply disappointed by reality','Procrastination and difficulty with practical demands','Avoiding conflict to the point of denying own needs','Vulnerability to criticism taking it too personally'],relationships:'You love deeply, fully, and with extraordinary authenticity. You seek connection that feels real, meaningful, and transformative. Your challenge: your idealism can lead to painful disappointment when people or relationships don\'t match your inner vision of what they could be.',careers:['Counseling, art therapy, or creative healing','Writing, poetry, or literary arts','Teaching, especially in creative or humanities fields','Social work, activism, or community development'],steps:[{title:'Bridge the inner and outer worlds daily',desc:'Create one daily action that brings your inner vision into the external world, however small. Your rich inner world can become a place to hide.'},{title:'Develop healthy conflict skills',desc:'Practice the template: "I feel _____ when _____ because _____. What I need is _____." Conflict done well deepens connection.'},{title:'Distinguish values from rules',desc:'Ask: "Is this a core value or a preference I\'m treating as a moral requirement?" Your values are beautiful — kept flexible, they liberate rather than constrain.'},{title:'Build a completion habit',desc:'Commit to completing one creative piece per month — imperfectly and on a deadline. Completion, not perfection, is the practice.'},{title:'Find your idealistic community',desc:'You need people who share your depth of feeling and hope. Book clubs, activism groups, creative collectives. Your people exist and they need you.'}]},
+ENFJ:{name:'The Protagonist',emoji:'🌟',tagline:'Inspiring, empathetic, and a natural catalyst for others\' growth.',desc:'You are a natural leader of people — not through authority, but through genuine warmth, insight, and the ability to see what\'s best in others and call it forth. You\'re energized by helping people grow and thrive, and you have an extraordinary capacity to inspire, mobilize, and connect.',strengths:['Exceptional emotional intelligence and people insight','Naturally inspiring and motivating leadership','Warmth, charisma, and genuine connection','Clear ethical compass and values-driven action','Ability to bring out the best in others'],blindspots:['Tendency to over-invest in others at own expense','Can be overly idealistic about people\'s capacity for change','Difficulty receiving criticism without taking it personally','May suppress own needs to keep others happy'],relationships:'You love generously and invest deeply. Your challenge is that you can become so focused on your partner\'s growth that you neglect your own needs and growth. The most important relationship in your life is the one with yourself.',careers:['Leadership development, coaching, or HR','Teaching, training, or educational administration','Nonprofit leadership or social entrepreneurship','Counseling, psychology, or organizational consulting'],steps:[{title:'Practice the oxygen mask principle',desc:'Schedule 3 hours per week that are exclusively yours — no helping, no giving, no responding. Protect these ferociously.'},{title:'Develop your own vision, separate from others',desc:'What is YOUR dream for YOUR life? Spend 30 minutes weekly in completely self-focused visioning.'},{title:'Allow others to fail forward',desc:'Your instinct to intervene can prevent people from developing resilience they need. Practice conscious restraint: offer once, then let them own the outcome.'},{title:'Receive feedback as a growth gift',desc:'Practice the 24-hour rule: receive feedback, let it settle, then engage with what\'s useful without defending.'},{title:'Develop your shadow — the contrarian within',desc:'Ask: "Am I doing this because it\'s truly right, or because I want to be seen as helpful?" Honest self-questioning is your most powerful growth tool.'}]},
+ENFP:{name:'The Campaigner',emoji:'🎪',tagline:'Enthusiastic, creative, and endlessly inspired by possibility.',desc:'You are a burst of creative energy, genuine warmth, and infectious enthusiasm. You see connections and possibilities that others miss entirely, and you have the charisma to bring others along for the ride. You care deeply about authenticity, meaning, and human connection — and you light up the lives of everyone fortunate enough to know you.',strengths:['Extraordinary creative vision and lateral thinking','Infectious enthusiasm that energizes everyone','Deep genuine empathy and interest in others','Ability to inspire and connect people around a shared vision','Remarkable adaptability and openness'],blindspots:['Difficulty maintaining focus on long-term commitments','Tendency to avoid conflict until it\'s critical','Can overextend social energy and then crash','Projects often started; fewer finished'],relationships:'You create magnetic connections and love deeply and enthusiastically. You need a partner who can keep up with your energy, support your dreams, and also provide some grounding. Your growth edge: learning to value consistency as much as inspiration.',careers:['Entrepreneurship, creative direction, or marketing','Counseling, coaching, or inspirational speaking','Journalism, media, or content creation','Arts, performance, or community organizing'],steps:[{title:'Create a "brilliant idea" parking lot',desc:'Create one system where ideas go to wait. Monthly, review and select one to pursue. This honors your creativity without drowning in it.'},{title:'Build a "boring basics" non-negotiable routine',desc:'Sleep, nutrition, and exercise are your stability system. Even 20 min of daily movement and consistent sleep radically improves your focus.'},{title:'Practice the "complete the loop" rule',desc:'For every new commitment you take on, complete or formally release one existing one. Unfinished loops drain energy.'},{title:'Develop your follow-through as an identity statement',desc:'Rebrand yourself from "I\'m the idea person" to "I\'m someone who generates great ideas AND sees the most important ones through."'},{title:'Build conflict into your communication as a care practice',desc:'Address things earlier. The template: "I\'ve been sitting with something I want to share because I care about us. Do you have a few minutes?"'}]},
+ISTJ:{name:'The Logistician',emoji:'📋',tagline:'Reliable, principled, and built for lasting quality.',desc:'You are the backbone of every institution that functions well. Dutiful, thorough, and extraordinarily reliable — when you commit to something, it gets done, correctly, and on time. You have a deep respect for tradition, proven systems, and clear responsibilities.',strengths:['Extraordinary reliability and follow-through','Meticulous attention to detail and quality','Strong ethical framework and sense of duty','Excellent organizational and planning abilities','Calm, measured response under pressure'],blindspots:['Can be resistant to change even when beneficial','May struggle to express feelings or emotional needs','Tendency toward rigidity and adherence to rules over people','Can be perceived as cold or emotionally unavailable'],relationships:'You express love through acts of service, loyalty, and reliability. You show up, every time. Your challenge is that your reserved nature can leave partners feeling emotionally unseen. Learning to express your inner world verbally opens your relationships to deeper intimacy.',careers:['Accounting, finance, or auditing','Legal, compliance, or regulatory roles','Military or law enforcement leadership','Engineering, architecture, or quality assurance'],steps:[{title:'Flex the change muscle deliberately',desc:'Choose one small process each month to experiment with changing. Deliberately try a different route, method, or sequence.'},{title:'Schedule emotional check-ins',desc:'Block 15 minutes weekly to write: "What am I feeling? What do I need?" Then share one insight with someone you trust.'},{title:'Practice expressing appreciation verbally',desc:'Tell people specifically why you value them. This costs little and means everything to those who need words.'},{title:'Explore "good enough" vs. "perfect"',desc:'"Done and warm" beats "perfect and cold." Practice delivering warmth at 80% quality instead of excellence at 0% frequency.'},{title:'Update your reference library regularly',desc:'Commit to reading one book in your field per month specifically to challenge current assumptions. Your best systems are built on the latest knowledge.'}]},
+ISFJ:{name:'The Defender',emoji:'🛡',tagline:'Warm, dedicated, and quietly extraordinary in their care.',desc:'You are the quiet hero of every community you\'re part of — remembering details about people, showing up without being asked, and holding everything together behind the scenes. Your warmth is genuine, your loyalty is total, and your commitment to the people you love is perhaps the deepest of any type.',strengths:['Exceptional memory for people\'s details and preferences','Warm, consistent, and deeply dependable care','Highly practical and organized support','Genuine dedication and loyalty','Ability to create comfort, belonging, and safety for others'],blindspots:['Difficulty saying no — even when burned out','May internalize feelings rather than expressing needs','Resistant to change that disrupts established comfort','Can struggle with self-advocacy and assertiveness'],relationships:'You give extraordinary love — often more than you receive — and you notice everything. You need a partner who sees and appreciates your constant quiet contributions, and who actively reciprocates care.',careers:['Healthcare, nursing, or social work','Education, especially early childhood','Administrative or operations management','Counseling or community service roles'],steps:[{title:'Practice the sacred art of saying no',desc:'Practice this template: "I care about this, and I can\'t commit to it fully right now. Could we revisit in [timeframe]?" This preserves your relationships and your energy.'},{title:'Ask for what you need — specifically',desc:'People who love you want to care for you but don\'t know how because you rarely ask. Weekly: identify one concrete need and ask for it directly.'},{title:'Stop shrinking to fit',desc:'Regularly ask yourself: "What do I actually want?" Then advocate for it, even when it\'s uncomfortable.'},{title:'Create a "non-negotiable recharge" practice',desc:'A weekly practice that is solely yours — a walk, a bath, a book — that happens regardless of others\' needs. Non-negotiable means non-negotiable.'},{title:'Receive recognition gracefully',desc:'Practice saying "Thank you — I appreciate you noticing that" without immediately deflecting or minimizing.'}]},
+ESTJ:{name:'The Executive',emoji:'⚙️',tagline:'Decisive, organized, and built for results.',desc:'You are a natural organizer of people and systems, with an impressive capacity to take charge, establish order, and execute plans efficiently. You have a strong sense of responsibility, high standards, and zero tolerance for ambiguity. People know where they stand with you.',strengths:['Exceptional organizational and leadership abilities','Clear, direct, and highly effective communication','Strong ethical framework and sense of duty','Decisive under pressure with practical problem-solving','Builds reliable, functional systems and teams'],blindspots:['Can appear inflexible or dismissive of others\' feelings','May struggle to acknowledge emotional complexity','Difficulty delegating fully and trusting others','Can prioritize structure over human nuance'],relationships:'You are a loyal, dependable, and committed partner who takes relationship responsibilities seriously. Your directness is often refreshing — and occasionally bruising. Your growth edge is learning to lead with empathy before accountability.',careers:['Operations, management, or executive leadership','Law, government, or military officer','Project management or construction management','Business administration or financial management'],steps:[{title:'Add "how does this feel?" to your toolkit',desc:'Before delivering a decision or feedback, address the emotional reality before the logical one. Feelings first, facts second.'},{title:'Actively solicit dissent',desc:'Ask directly: "What am I missing here?" The best decisions come from having your assumptions challenged, not confirmed.'},{title:'Delegate fully — not micromanage',desc:'True delegation means transferring authority, not just tasks. Define the outcome, provide support, then get out of the way.'},{title:'Schedule relationship time as seriously as meetings',desc:'Block personal time in your calendar with the same gravity as board meetings. Show up fully, phone away.'},{title:'Develop curiosity about what you don\'t understand',desc:'Spend time monthly with people who think fundamentally differently from you. Managed uncertainty is a leadership superpower.'}]},
+ESFJ:{name:'The Consul',emoji:'🌻',tagline:'Warm, social, and devoted to the well-being of their community.',desc:'You are the social heartbeat of every environment you\'re in — connecting people, remembering what matters to them, creating warmth and belonging, and going to extraordinary lengths to ensure everyone feels cared for. Your loyalty is unwavering, your generosity is genuine.',strengths:['Exceptional social warmth and genuine care for others','Outstanding ability to build and maintain relationships','Highly attuned to others\' emotional states','Reliable, responsible, and deeply conscientious','Creates belonging and community wherever they go'],blindspots:['Can be highly sensitive to criticism — takes it personally','May suppress own needs to keep peace','Susceptibility to social approval needs','Can become overwhelmed by others\' negative emotions'],relationships:'You are a devoted, attentive, and deeply generous partner. Your challenge is that your happiness can become too dependent on your partner\'s happiness — losing yourself in the process. Your growth edge: maintaining a strong sense of self within the relationship.',careers:['Human resources, social work, or community management','Healthcare, nursing, or patient care','Event coordination, hospitality, or public relations','Teaching, counseling, or educational leadership'],steps:[{title:'Build an identity independent of relationships',desc:'Develop 2-3 interests, goals, and friendships that are exclusively yours. Who are you outside of your relationships?'},{title:'Practice receiving criticism as information',desc:'Practice the pause: breathe, thank the person, and wait 24 hours before deciding what (if anything) to do with it.'},{title:'Establish emotional sovereignty',desc:'Daily: identify 3 emotions that are specifically yours, not absorbed from your environment. Build healthy separateness.'},{title:'Learn strategic conflict',desc:'Practice naming concerns early: "I\'ve noticed something I want to talk about — when you\'re ready." Early conversation prevents emotional shutdown.'},{title:'Honor your own needs as a moral practice',desc:'"I need..." is not selfish — it\'s honest. People who love you want to care for you too.'}]},
+ISTP:{name:'The Virtuoso',emoji:'🔧',tagline:'Cool, analytical, and masterful with the material world.',desc:'You are a natural craftsman of systems — endlessly curious about how things work, supremely capable with practical problem-solving, and utterly unflappable in a crisis. You think in action, not words. You need autonomy the way others need air. When something breaks — from a machine to a social dynamic — you can diagnose and fix it with remarkable precision and calm.',strengths:['Extraordinary practical problem-solving and technical mastery','Calm, level-headed performance in crisis situations','Highly observant with exceptional attention to mechanical detail','Independent and self-sufficient','Creative in finding efficient, elegant solutions'],blindspots:['May appear emotionally unavailable or detached','Can withdraw entirely when feeling confined','Difficulty with long-term planning and follow-through','May resist commitment and routine'],relationships:'You love through presence, practical support, and loyalty — but you may rarely say it out loud. You need a partner who respects your autonomy and doesn\'t interpret your independence as distance. Your growth edge: developing the emotional vocabulary to let people know what you feel.',careers:['Engineering, mechanics, or technical trades','Emergency services, military, or law enforcement','Data science, forensics, or technical analysis','Entrepreneurship in technical or manufacturing domains'],steps:[{title:'Build an emotional vocabulary',desc:'Start with a simple daily practice: "I notice I\'m feeling _____ right now." Don\'t analyze it. Just name it. This builds the bridge between inner world and outer expression.'},{title:'Share your process with others',desc:'Start narrating your process: "Here\'s what I\'m thinking..." invites people in and builds understanding.'},{title:'Commit to one long-term project',desc:'Find a project that requires sustained mastery — a craft, a startup, a technical challenge — and see what happens when you stay with it past the exciting beginning.'},{title:'Develop proactive relationship maintenance',desc:'Schedule monthly check-ins with key people: "How are we doing? Is there anything you need from me that you\'re not getting?"'},{title:'Translate your love into words occasionally',desc:'You show love through showing up. Occasionally, convert that love into language. One sentence can mean everything: "I\'m glad you\'re in my life."'}]},
+ISFP:{name:'The Adventurer',emoji:'🎨',tagline:'Sensitive, artistic, and beautifully present in the moment.',desc:'You experience the world with remarkable sensory richness and emotional depth. You are quietly creative, fiercely authentic, and committed to living in a way that feels genuinely true to your values. You resist conformity not out of rebellion but out of the genuine need to be real.',strengths:['Exceptional sensory intelligence and aesthetic awareness','Deep authenticity and commitment to personal values','Present-moment awareness that most people never develop','Genuine warmth and empathy expressed through action','Artistic and creative expression that moves others'],blindspots:['Can be conflict-avoidant to the point of self-abandonment','Difficulty with long-term planning and abstract thinking','May be overly self-critical and sensitive to judgment','Can struggle to advocate for own needs'],relationships:'You love quietly, beautifully, and with extraordinary attentiveness. You show love through presence, shared experiences, and small acts of care. You need a partner who appreciates your depth, doesn\'t rush you, and creates space for your inner world.',careers:['Visual arts, design, or creative direction','Music, performance, or dance','Nursing, veterinary care, or healing arts','Environmental work, outdoor education, or crafts'],steps:[{title:'Develop a practice of healthy self-advocacy',desc:'Practice the template: "I feel _____ about this, and what I need is _____." Start with low-stakes situations to build the muscle.'},{title:'Create consistently, not only when inspired',desc:'Build a daily creative practice — even 20 minutes — regardless of inspiration. The practice creates the conditions for inspiration.'},{title:'Ground your values in concrete commitments',desc:'"I value freedom" becomes "I will not accept jobs that require X." Specificity turns values into a life.'},{title:'Build a planning bridge',desc:'Try "backward planning": start with what you want to experience in 3 years, then work back to what needs to happen next month.'},{title:'Accept appreciation without deflection',desc:'When someone loves what you\'ve created or done, practice receiving it fully. Say: "Thank you — I\'m glad it landed that way."'}]},
+ESTP:{name:'The Entrepreneur',emoji:'🎯',tagline:'Bold, perceptive, and magnificently alive in the present.',desc:'You are supremely present — more than almost any other type. You notice everything, respond instantly, and bring an energy to every situation that is impossible to ignore. You think on your feet, thrive in chaos, and find a way to make things work when everyone else is still formulating a plan.',strengths:['Exceptional situational awareness and rapid response','Natural charisma and ability to read social dynamics','Decisive action and high risk tolerance','Pragmatic problem-solver in real-time situations','Infectious energy and excitement for life'],blindspots:['Can be impulsive and overlook long-term consequences','May appear insensitive to others\' feelings in the moment','Difficulty with abstract planning and vision','Can chase stimulation at the expense of depth'],relationships:'You bring excitement, energy, and a refreshing directness to relationships. You love with action and presence. Your challenge: emotional depth can feel like murky, uncharted territory. Your growth edge is learning to sit with feelings — your own and others\' — long enough for real intimacy to develop.',careers:['Sales, trading, or high-stakes negotiations','Emergency services, military, or athletics','Entrepreneurship or real estate','Entertainment, events, or hospitality management'],steps:[{title:'Develop future-self thinking',desc:'Build a "future-self visualization" practice: 5 minutes each morning, vividly imagine yourself 5 years from now at your best. Let the visceral feeling guide today\'s choices.'},{title:'Create a 48-hour rule for big decisions',desc:'For major decisions (financial, relational, professional), commit to a mandatory 48-hour pause. Instinct + reflection = your best outcomes.'},{title:'Invest in emotional depth as a competitive advantage',desc:'You read people brilliantly. Develop the skill of responding to their emotional states, not just their surface behavior. Ask: "How are you actually doing?" and mean it.'},{title:'Build accountability structures',desc:'Add one trusted accountability partner who knows your goals and checks in weekly. Freedom within structure is more expansive than pure freedom.'},{title:'Develop a mastery pursuit',desc:'Find one domain that rewards deep, sustained investment — a sport, martial art, craft, or instrument. Depth balances and enriches your broad, rapid engagement with life.'}]},
+ESFP:{name:'The Entertainer',emoji:'🌈',tagline:'Spontaneous, vibrant, and a joy-generator for everyone around them.',desc:'You are the person who makes everything more fun, more alive, and more human. You have an extraordinary gift for being present, connecting authentically, and bringing genuine joy and light wherever you go. Your warmth is not a performance — it\'s the most authentic expression of who you are.',strengths:['Natural charisma and magnetic warmth','Exceptional ability to read and respond to social energy','Genuine presence and moment-to-moment joy','Practical, resourceful problem-solver in real time','Generosity of spirit that creates belonging'],blindspots:['Avoidance of difficult emotions and hard conversations','Can be impulsive and struggle with long-term planning','May seek external stimulation to avoid inner discomfort','Consistency and follow-through are genuine challenges'],relationships:'You love fully, expressively, and with your whole being in the moment. You need a partner who appreciates your aliveness and can also offer some grounding. Your growth edge: learning that the deep waters of emotional difficulty aren\'t as dangerous as they seem.',careers:['Entertainment, performance, or arts','Hospitality, events, or tourism','Teaching or youth work','Healthcare, social work, or therapy (with the right structure)'],steps:[{title:'Build a relationship with your inner discomfort',desc:'Practice 10 minutes daily of simply sitting with whatever you feel, without fixing or distracting. This is where your depth lives.'},{title:'Create long-term anchors',desc:'Create 1-2 long-term vision anchors: "In 3 years, I want to feel _____." Check in with this monthly. It doesn\'t constrain your spontaneity — it gives it direction.'},{title:'Develop your hard conversation practice',desc:'Avoidance of difficult topics is the main thing standing between you and the profound intimacy you\'re capable of. Practice one hard conversation per week.'},{title:'Invest in one sustained pursuit',desc:'Find one thing that rewards consistency — a creative practice, a fitness goal, a learning journey. Show yourself you can stay.'},{title:'Receive as well as you give',desc:'Practice receiving: let people celebrate you, support you, and care for you without deflecting with humor or minimizing.'}]}
+};
+
+/* ---------- COMPAT PROFILES ---------- */
+const COMPAT_PROFILES = {
+low:{name:'Growing Distance',emoji:'🌱',tagline:'There are real challenges here — and real opportunities for change.',
+desc:'Your assessment reveals significant gaps across one or more key relationship pillars. This doesn\'t mean the relationship is beyond hope — but it does mean that without deliberate intervention, these gaps tend to widen. Many couples navigate this stage successfully with the right support.',
+strengths:['Your willingness to assess honestly is a critical first step','Awareness of gaps creates the possibility of closing them','Relationships that survive serious challenges often become the most resilient'],
+areas:['Communication may feel unsafe or ineffective — this is where to start','Trust may have been damaged and requires deliberate rebuilding','Conflict patterns may be creating distance rather than resolution'],
+steps:[{title:'Seek couples therapy immediately',desc:'Not as a last resort, but as a first investment. A skilled therapist gives you a safe container and effective tools. The Gottman Method is particularly evidence-based.'},{title:'Identify your lowest-scoring pillar and focus there first',desc:'Your lowest-scoring area is where the relationship is most vulnerable. Address one pillar at a time rather than trying to fix everything simultaneously.'},{title:'Re-establish basic safety and respect as a foundation',desc:'Both partners need to commit: no contempt, no cruelty, no stonewalling in conflict. Identify and eliminate the "Four Horsemen" first.'},{title:'Have the values conversation honestly',desc:'Schedule 2 hours (phone off) to discuss your long-term visions honestly. Honest clarity — even uncomfortable — is better than sustained misalignment.'},{title:'Create one positive experience per day intentionally',desc:'The Gottman Sound Relationship House requires a 5:1 positive-to-negative interaction ratio. Start deliberately: one genuine moment of appreciation, affection, or shared laughter daily.'}]},
+building:{name:'Building Blocks',emoji:'🧱',tagline:'A real foundation exists — and it\'s time to strengthen it intentionally.',
+desc:'Your relationship has meaningful strengths alongside real areas that need focused attention. You\'re in the most common zone for long-term couples — enough connection to build on, enough friction to require deliberate work.',
+strengths:['A foundational bond exists and can be built upon','You likely have real moments of genuine connection','Enough commitment to motivate growth'],
+areas:['Some dimensions likely need more than surface-level attention','Patterns of communication or conflict may be becoming habitual','Either trust or intimacy (or both) may need intentional investment'],
+steps:[{title:'Map your relationship landscape together',desc:'Sit together and identify: 3 genuine strengths, 2 areas needing attention, and 1 commitment each of you is willing to make this month. Do this with curiosity, not blame.'},{title:'Invest in your communication infrastructure',desc:'Read "Hold Me Tight" by Sue Johnson together. Implement one communication practice — a weekly check-in — consistently for 90 days.'},{title:'Rebuild or deepen intimacy rituals',desc:'Create 3 new rituals: a daily touchpoint (5-min connection), a weekly date (technology-free), and a monthly intentional experience together.'},{title:'Address trust incrementally',desc:'Trust rebuilds through consistent small actions over time — not grand gestures. Identify 3 specific behaviors that would rebuild trust and commit to them publicly.'},{title:'Engage couples coaching or therapy as a growth tool',desc:'Not because you\'re failing — because the best relationships are built intentionally. 10 sessions with a skilled therapist can give you tools that serve you for decades.'}]},
+strong:{name:'Strong Foundation',emoji:'🏡',tagline:'You\'ve built something genuinely solid. Now deepen it.',
+desc:'Your relationship sits on a strong foundation across most key dimensions. You have real communication, meaningful trust, and a genuine bond. The work at this level isn\'t about fixing problems — it\'s about deepening connection and intentionally growing together.',
+strengths:['Strong trust and emotional safety as a baseline','Generally effective communication across most scenarios','Shared values and compatible life visions','Ability to navigate conflict without destroying connection'],
+areas:['Some dimensions may show room for growth and deepening','Intimacy can become assumed rather than cultivated at this stage','Growth can stagnate when things are "good enough"'],
+steps:[{title:'Move from maintenance to intentional growth',desc:'Choose one relationship domain per quarter to actively invest in together. Strong relationships become extraordinary when both partners commit to deepening, not just maintenance.'},{title:'Revisit your relationship vision',desc:'Spend an afternoon answering: "What do we want our relationship to look like in 10 years?" Then identify the first step toward that vision.'},{title:'Deepen your conflict repair skills',desc:'Study Gottman\'s repair attempts and de-escalation techniques. Building your conflict repair toolkit turns friction into closeness.'},{title:'Invest in shared growth experiences',desc:'Do something together that challenges and expands you both — a couples retreat, an adventure, a shared creative project, or a course.'},{title:'Speak appreciations loudly and specifically',desc:'Start a daily appreciation ritual — one specific thing each day. This simple practice dramatically deepens connection.'}]},
+deep:{name:'Deep Bond',emoji:'💎',tagline:'A rare and beautiful depth of connection — honor and tend it.',
+desc:'You and your partner have built something truly exceptional across the five pillars of relationship health. Your connection is characterized by real safety, authentic communication, aligned vision, and the capacity to navigate difficulty without damaging the bond.',
+strengths:['Deep emotional safety that allows genuine vulnerability','Excellent communication including through difficulty','Strong values alignment with compatible life vision','Meaningful physical and emotional intimacy'],
+areas:['Even deep bonds require consistent intentional maintenance','Individual growth can sometimes move at different paces','Routine and complacency are the main risks at this stage'],
+steps:[{title:'Celebrate and name what you\'ve built',desc:'Take time to explicitly acknowledge how rare and valuable what you\'ve created is. Write each other a letter about what this relationship has meant. Read them aloud.'},{title:'Protect against complacency actively',desc:'Continue dating each other. Continue surprising each other. Continue asking questions as if you\'re still learning each other — because you are.'},{title:'Invest in each other\'s individual growth',desc:'Ask monthly: "What dream of yours am I most powerfully supporting right now?" Then do more of it.'},{title:'Become a relationship resource for others',desc:'Mentor younger couples, share your communication practices, or simply be the example in your community of what real love looks like.'},{title:'Create a 10-year relationship vision together',desc:'What experiences, contributions, adventures, and depths of connection do you want to explore together? A vivid shared vision accelerates what\'s already strong.'}]},
+soulmate:{name:'Soulmate Connection',emoji:'🌌',tagline:'Extraordinary — and worth protecting with everything you have.',
+desc:'Your results reflect an exceptionally rare and profound partnership. Across all five pillars, you and your partner have achieved a level of integration that few relationships reach. This is not luck: it is the result of mutual commitment, consistent investment, and the willingness to do the hard work of genuine connection.',
+strengths:['Complete emotional safety and radical vulnerability','Exceptional alignment across values, dreams, and vision','Intimacy that encompasses friendship, romance, and deep knowing','Conflict that consistently deepens rather than damages'],
+areas:['Extraordinary relationships require extraordinary stewardship','The risk of taking a great relationship for granted is real','Being a beacon for others is both opportunity and responsibility'],
+steps:[{title:'Document your relationship\'s story',desc:'Write the story of how you got here — the challenges overcome, the moments of choosing each other, the ways you\'ve grown. This document becomes a source of resilience in future hard moments.'},{title:'Create legacy commitments together',desc:'What do you want to create, give, or build together as a couple? A shared meaningful project amplifies connection.'},{title:'Continue intentional investment without complacency',desc:'Never assume the foundation maintains itself. Date nights, vulnerability, appreciation, curiosity — forever.'},{title:'Protect your sanctuary fiercely',desc:'Be thoughtful about what and who you invite into your intimate orbit. Not every person or situation deserves access to what you\'ve built.'},{title:'Share your model of love with the world',desc:'Healthy love, modeled consistently, changes everything around it. Let it be visible.'}]}
+};
+
+/* ====================================================
+   TYPES EXPLORER DATA
+==================================================== */
+const OCEAN_INFO = {
+  O:{name:'Openness to Experience',icon:'🎨',color:'#a78bfa',
+    short:'Imagination, curiosity, creativity, and love of ideas.',
+    high:{label:'High Openness',desc:'You are imaginative, deeply curious, and creatively expressive. You crave novelty, love abstract thinking, and are moved by art, music, and ideas. Conventional thinking feels limiting to you.'},
+    mod:{label:'Moderate Openness',desc:'You balance curiosity with practicality. You enjoy new experiences in areas of interest while appreciating proven, reliable approaches in others.'},
+    low:{label:'Conventional & Practical',desc:'You prefer the familiar and concrete. Proven methods, clear facts, and reliable routines are more compelling to you than abstract speculation or constant novelty.'}
+  },
+  C:{name:'Conscientiousness',icon:'📋',color:'#38bdf8',
+    short:'Self-discipline, organization, reliability, and goal-directedness.',
+    high:{label:'High Conscientiousness',desc:'You are organized, reliable, and driven. You set high standards, plan carefully, and follow through with remarkable consistency. Others can count on you to deliver what you promise.'},
+    mod:{label:'Moderate Conscientiousness',desc:'You are generally organized and dependable while still enjoying some flexibility and spontaneity in your daily approach.'},
+    low:{label:'Flexible & Spontaneous',desc:'You prefer adaptability and improvisation. Structure can feel restrictive, and you often thrive with the freedom to respond to life as it unfolds rather than following rigid plans.'}
+  },
+  E:{name:'Extraversion',icon:'🎙',color:'#f472b6',
+    short:'Energy from social interaction, assertiveness, and positive emotionality.',
+    high:{label:'High Extraversion',desc:'You are energized by people and social settings. Outgoing, expressive, and enthusiastic, you bring vibrant energy to every room and naturally seek out connection and stimulation.'},
+    mod:{label:'Ambivert',desc:'You are comfortable in both social and solitary settings — adapting fluidly to different contexts depending on your mood, energy, and what the situation calls for.'},
+    low:{label:'Introverted',desc:'You are energized by solitude and prefer depth over breadth in relationships. You observe carefully before engaging and recharge through quiet, reflective time alone.'}
+  },
+  A:{name:'Agreeableness',icon:'🤝',color:'#6ee7b7',
+    short:'Warmth, cooperativeness, empathy, and concern for others\' wellbeing.',
+    high:{label:'High Agreeableness',desc:'You are genuinely warm, cooperative, and deeply empathetic. You prioritize harmony and others\' wellbeing and are generous with your time, compassion, and forgiveness.'},
+    mod:{label:'Moderate Agreeableness',desc:'You balance warmth with assertiveness — generally cooperative and empathetic while able to push back, compete, and hold firm when your values or interests require it.'},
+    low:{label:'Analytical & Direct',desc:'You prioritize honesty, logic, and efficiency over social harmony. You are comfortable with competitive or challenging dynamics and push back readily when you disagree.'}
+  },
+  N:{name:'Neuroticism (Emotional Reactivity)',icon:'🌊',color:'#fcd34d',
+    short:'Emotional reactivity, sensitivity to stress, and intensity of negative emotions.',
+    high:{label:'High Emotional Reactivity',desc:'You experience emotions intensely and process the world with deep sensitivity. Stress, anxiety, and self-doubt surface frequently. This often pairs with high empathy and creative depth.'},
+    mod:{label:'Moderate Stability',desc:'You handle most situations effectively but have specific areas where stress or emotional turbulence surfaces. Generally stable with some identifiable vulnerable areas.'},
+    low:{label:'Emotionally Stable',desc:'You handle stress effectively, recover quickly from setbacks, and maintain consistent emotional equilibrium. Your stability is a significant psychological and relational asset.'}
+  }
+};
+
+const COMPAT_PILLARS_DATA = [
+  {icon:'💬',name:'Communication',color:'#38bdf8',
+   desc:'The lifeblood of every lasting relationship. Covers emotional safety, active listening, expressing needs clearly, and truly feeling heard and understood. Research consistently identifies communication as the single strongest predictor of long-term relationship satisfaction.'},
+  {icon:'🎯',name:'Values & Goals',color:'#10B981',
+   desc:'Shared direction creates a shared future. Covers alignment in major life goals, financial values, family planning, spiritual compatibility, and long-term vision. Fundamental misalignment here creates persistent tension that other strengths cannot fully compensate for.'},
+  {icon:'🔒',name:'Trust & Security',color:'#8B5CF6',
+   desc:'The foundation everything else rests on. Covers emotional safety, faithfulness, boundary respect, consistency, and confidence in your partner\'s commitment. Without trust, even compatible values and strong communication become fragile.'},
+  {icon:'💕',name:'Intimacy & Connection',color:'#F472B6',
+   desc:'The quality of presence between you. Covers emotional closeness, physical affection, shared experiences, support for individual growth, and genuine friendship. Gottman\'s research identifies friendship as the bedrock of relationship satisfaction.'},
+  {icon:'🤝',name:'Conflict Resolution',color:'#F59E0B',
+   desc:'How you navigate difficulty determines your relationship\'s trajectory. Covers respectful disagreement, repair attempts, forgiveness, and whether conflict deepens or damages your bond. It\'s not about having fewer conflicts — it\'s about how you navigate them.'}
+];
+
+/* ====================================================
+   TYPES EXPLORER BUILDERS
+==================================================== */
+function buildTypesExplorer(){
+  buildTraumaPanel();
+  buildLovePanel();
+  buildMBTIPanel();
+  buildOceanPanel();
+  buildCompatPanel();
+}
+
+function buildTraumaPanel(){
+  const aceCategories=[
+    {icon:'👊',name:'Physical Abuse',desc:'Experiences of being hit, pushed, grabbed, or physically harmed by a caregiver in ways that felt dangerous or frightening.'},
+    {icon:'🗣',name:'Emotional Abuse',desc:'Being insulted, humiliated, threatened, or made to feel worthless, stupid, or deeply flawed by a parent or adult in the home.'},
+    {icon:'⚠️',name:'Sexual Abuse',desc:'Any unwanted sexual contact, exposure, or exploitation involving a child by an older person in a position of power or trust.'},
+    {icon:'🍽',name:'Physical Neglect',desc:'Lack of adequate food, clothing, medical care, or supervision — failing to meet a child\'s basic physical and safety needs.'},
+    {icon:'💔',name:'Emotional Neglect',desc:'Feeling unloved, unsupported, or emotionally abandoned by family members. The absence of warmth, validation, and emotional attunement.'},
+    {icon:'🏠',name:'Domestic Violence',desc:'Witnessing violence or severe, threatening conflict between parents or adults in the household — living in a home filled with fear.'},
+    {icon:'🧠',name:'Household Mental Illness',desc:'Living with a family member who experienced depression, anxiety, severe mood disorders, or other serious mental health conditions affecting daily life.'},
+    {icon:'🍶',name:'Substance Abuse',desc:'Growing up with a parent or household member who struggled with excessive alcohol use or drug dependency, creating chaos or fear at home.'},
+    {icon:'💔',name:'Parental Loss/Separation',desc:'Experiencing parental divorce, abandonment, death, or incarceration — or frequent instability with different caregivers and living situations.'},
+  ];
+  const profiles=[
+    {key:'resilient',range:'0–20%',g:'linear-gradient(135deg,#8B5CF6,#10B981)'},
+    {key:'healing',range:'21–40%',g:'linear-gradient(135deg,#7c3aed,#06B6D4)'},
+    {key:'warrior',range:'41–60%',g:'linear-gradient(135deg,#6366F1,#3B82F6)'},
+    {key:'survivor',range:'61–80%',g:'linear-gradient(135deg,#3B82F6,#F59E0B)'},
+    {key:'phoenix',range:'81–100%',g:'linear-gradient(135deg,#EF4444,#F97316)'},
+  ];
+  let html=`<p style="color:var(--muted);font-size:0.87rem;line-height:1.65;margin-bottom:22px">Based on the <strong style="color:var(--text)">Adverse Childhood Experiences (ACE) framework</strong>, your responses are scored across 9 categories of childhood adversity. Your total impact score places you in one of five healing profiles — each with its own roadmap for growth.</p>`;
+  html+=`<div class="group-section"><div class="group-label">5 Healing Profiles</div><div class="type-cards-grid">`;
+  profiles.forEach(({key,range,g})=>{
+    const p=TRAUMA_PROFILES[key];
+    html+=`<div class="type-card" style="--tc-g:${g}"><div class="tc-top"><div class="tc-icon">${p.emoji}</div><div><div class="tc-name">${p.name}</div><div class="tc-sub">Score range: ${range}</div></div></div><div class="tc-desc">${p.tagline} ${p.desc.substring(0,130)}...</div><span class="tc-badge">Impact: ${range}</span></div>`;
+  });
+  html+=`</div></div><div class="group-section"><div class="group-label">9 ACE Categories Assessed</div><div class="type-cards-grid">`;
+  aceCategories.forEach(({icon,name,desc})=>{
+    html+=`<div class="type-card" style="--tc-g:linear-gradient(135deg,#8B5CF6,#06B6D4)"><div class="tc-top"><div class="tc-icon">${icon}</div><div><div class="tc-name">${name}</div></div></div><div class="tc-desc">${desc}</div></div>`;
+  });
+  html+=`</div></div>`;
+  document.getElementById('tab-trauma').innerHTML=html;
+}
+
+function buildLovePanel(){
+  const langs=[
+    {key:'WA',g:'linear-gradient(135deg,#6366F1,#38bdf8)'},
+    {key:'AS',g:'linear-gradient(135deg,#10B981,#06B6D4)'},
+    {key:'RG',g:'linear-gradient(135deg,#F59E0B,#F97316)'},
+    {key:'QT',g:'linear-gradient(135deg,#8B5CF6,#6366F1)'},
+    {key:'PT',g:'linear-gradient(135deg,#F472B6,#EF4444)'},
+  ];
+  let html=`<p style="color:var(--muted);font-size:0.87rem;line-height:1.65;margin-bottom:22px">Developed by Dr. Gary Chapman, the <strong style="color:var(--text)">5 Love Languages</strong> describe the primary ways people express and experience love. Your quiz reveals your primary language (how you feel most loved) and secondary language (how you also give and receive love).</p>`;
+  html+=`<div class="group-section"><div class="group-label">The 5 Love Languages</div><div class="type-cards-grid">`;
+  langs.forEach(({key,g})=>{
+    const p=LOVE_PROFILES[key];
+    html+=`<div class="type-card" style="--tc-g:${g}"><div class="tc-top"><div class="tc-icon">${p.emoji}</div><div><div class="tc-name">${p.name}</div><div class="tc-sub">Language of love</div></div></div><div class="tc-desc">${p.tagline} ${p.desc.substring(0,120)}...</div><div style="margin-top:10px"><div style="font-size:0.72rem;color:var(--dim);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.07em;font-weight:600">Filled by</div><div style="display:flex;flex-wrap:wrap;gap:5px">${p.fills.slice(0,3).map(f=>`<span class="tc-badge">${f.substring(0,28)}</span>`).join('')}</div></div></div>`;
+  });
+  html+=`</div></div><div class="group-section"><div class="group-label">Understanding Your Love Profile</div><div class="type-cards-grid">`;
+  const concepts=[
+    {icon:'🔑',name:'Primary Language',desc:'The love language that fills your emotional tank most powerfully — the one you most crave and respond to. This is your primary result.'},
+    {icon:'✨',name:'Secondary Language',desc:'Your second-strongest love language. Often how you naturally express love to others, even if it\'s not how you most need to receive it.'},
+    {icon:'🔄',name:'Love Language Gaps',desc:'When partners have different primary languages, love can be given but not felt. Knowing both partners\' languages bridges this invisible gap.'},
+    {icon:'📈',name:'Can Change Over Time',desc:'Your love language can shift with life circumstances — after trauma, parenthood, or loss. Retaking the quiz during major life changes is valuable.'},
+  ];
+  concepts.forEach(({icon,name,desc})=>{
+    html+=`<div class="type-card" style="--tc-g:linear-gradient(135deg,#F472B6,#EF4444)"><div class="tc-top"><div class="tc-icon">${icon}</div><div><div class="tc-name">${name}</div></div></div><div class="tc-desc">${desc}</div></div>`;
+  });
+  html+=`</div></div>`;
+  document.getElementById('tab-love').innerHTML=html;
+}
+
+function buildMBTIPanel(){
+  const groups=[
+    {label:'Analysts (NT) — Strategic Thinkers',types:['INTJ','INTP','ENTJ','ENTP'],g:'linear-gradient(135deg,#6366F1,#3B82F6)'},
+    {label:'Diplomats (NF) — Empathic Visionaries',types:['INFJ','INFP','ENFJ','ENFP'],g:'linear-gradient(135deg,#8B5CF6,#F472B6)'},
+    {label:'Sentinels (SJ) — Reliable Anchors',types:['ISTJ','ISFJ','ESTJ','ESFJ'],g:'linear-gradient(135deg,#10B981,#06B6D4)'},
+    {label:'Explorers (SP) — Practical Creators',types:['ISTP','ISFP','ESTP','ESFP'],g:'linear-gradient(135deg,#F59E0B,#F97316)'},
+  ];
+  let html=`<p style="color:var(--muted);font-size:0.87rem;line-height:1.65;margin-bottom:22px">The <strong style="color:var(--text)">Myers-Briggs Type Indicator (MBTI)</strong> identifies your personality across 4 cognitive dimensions: Energy (E/I), Information (S/N), Decisions (T/F), and Lifestyle (J/P). These combine to produce 1 of 16 distinct personality types, grouped into 4 temperament families.</p>`;
+  html+=`<div style="background:var(--bg2);border-radius:13px;padding:16px;margin-bottom:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center">`;
+  [{l:'E vs I',d:'Where you get energy'},{l:'S vs N',d:'How you process info'},{l:'T vs F',d:'How you decide'},{l:'J vs P',d:'How you live'}].forEach(({l,d})=>{
+    html+=`<div style="padding:10px"><div style="font-size:0.92rem;font-weight:700;color:var(--a1);margin-bottom:3px">${l}</div><div style="font-size:0.72rem;color:var(--dim)">${d}</div></div>`;
+  });
+  html+=`</div>`;
+  groups.forEach(({label,types,g})=>{
+    html+=`<div class="group-section"><div class="group-label">${label}</div><div class="mbti-16-grid">`;
+    types.forEach(t=>{
+      const p=MBTI_PROFILES[t];
+      html+=`<div class="mbti-mini"><div class="mm-code" style="background:${g};-webkit-background-clip:text;-webkit-text-fill-color:transparent">${t}</div><div class="mm-emoji">${p.emoji}</div><div class="mm-name">${p.name}</div><div class="mm-tag">${p.tagline.substring(0,50)}${p.tagline.length>50?'...':''}</div></div>`;
+    });
+    html+=`</div></div>`;
+  });
+  document.getElementById('tab-mbti').innerHTML=html;
+}
+
+function buildOceanPanel(){
+  let html=`<p style="color:var(--muted);font-size:0.87rem;line-height:1.65;margin-bottom:22px">The <strong style="color:var(--text)">Big Five OCEAN model</strong> is the most rigorously validated personality framework in scientific psychology. Unlike categorical tests, it measures each trait on a continuous spectrum — giving you a unique percentage score for each dimension rather than a fixed "type."</p>`;
+  html+=`<div class="ocean-grid">`;
+  Object.entries(OCEAN_INFO).forEach(([k,v])=>{
+    html+=`<div class="ocean-card" style="--oc:${v.color}">
+      <div class="oc-header"><div class="oc-icon">${v.icon}</div><div><div class="oc-name">${v.name}</div><div class="oc-short">${v.short}</div></div></div>
+      <div class="oc-levels">
+        <div class="oc-level"><div class="oc-level-lbl" style="color:${v.color}">▲ ${v.high.label}</div><div class="oc-level-desc">${v.high.desc}</div></div>
+        <div class="oc-level"><div class="oc-level-lbl">◆ ${v.mod.label}</div><div class="oc-level-desc">${v.mod.desc}</div></div>
+        <div class="oc-level"><div class="oc-level-lbl">▼ ${v.low.label}</div><div class="oc-level-desc">${v.low.desc}</div></div>
+      </div>
+    </div>`;
+  });
+  html+=`</div><div style="margin-top:20px;background:var(--bg2);border-radius:13px;padding:18px"><div style="font-size:0.8rem;color:var(--muted);line-height:1.65"><strong style="color:var(--text)">💡 Key insight:</strong> There are no "good" or "bad" scores in the Big Five. High Neuroticism often pairs with high creativity and empathy. Low Agreeableness correlates with effective leadership in competitive environments. Every profile has unique strengths — the goal is understanding yours.</div></div>`;
+  document.getElementById('tab-ocean').innerHTML=html;
+}
+
+function buildCompatPanel(){
+  const levels=[
+    {key:'low',range:'0–30%',g:'linear-gradient(135deg,#EF4444,#F97316)'},
+    {key:'building',range:'31–50%',g:'linear-gradient(135deg,#F59E0B,#EAB308)'},
+    {key:'strong',range:'51–70%',g:'linear-gradient(135deg,#10B981,#06B6D4)'},
+    {key:'deep',range:'71–89%',g:'linear-gradient(135deg,#6366F1,#8B5CF6)'},
+    {key:'soulmate',range:'90–100%',g:'linear-gradient(135deg,#F472B6,#8B5CF6)'},
+  ];
+  let html=`<p style="color:var(--muted);font-size:0.87rem;line-height:1.65;margin-bottom:22px">This assessment measures relationship health across <strong style="color:var(--text)">5 evidence-based pillars</strong> developed from decades of relationship research, including the work of Drs. John and Julie Gottman. Your combined score places you in 1 of 5 relationship profiles — each with a specific growth roadmap.</p>`;
+  html+=`<div class="compat-two-col">`;
+  html+=`<div><div class="compat-sub-title">5 Relationship Pillars</div>`;
+  COMPAT_PILLARS_DATA.forEach(p=>{
+    html+=`<div class="pillar-card"><div class="pi-icon">${p.icon}</div><div><div class="pi-name" style="color:${p.color}">${p.name}</div><div class="pi-desc">${p.desc}</div></div></div>`;
+  });
+  html+=`</div><div><div class="compat-sub-title">5 Compatibility Profiles</div>`;
+  levels.forEach(({key,range,g})=>{
+    const p=COMPAT_PROFILES[key];
+    html+=`<div class="level-card"><div class="lv-emoji">${p.emoji}</div><div><div class="lv-name">${p.name}</div><div class="lv-range">Score: ${range}</div><div class="lv-desc">${p.tagline}</div></div></div>`;
+  });
+  html+=`</div></div>`;
+  document.getElementById('tab-compat').innerHTML=html;
+}
+
+/* ====================================================
+   NAVIGATION
+==================================================== */
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('nav-home-btn').style.display=(id==='home')?'none':'block';
+}
+
+function showHome(){
+  state.currentQuiz=null;state.currentQ=0;state.answers=[];
+  showView('home');
+}
+
+function startQuiz(quizId){
+  state.currentQuiz=quizId;state.currentQ=0;state.answers=[];
+  renderIntro(quizId);showView('quiz-intro');
+}
+
+function beginQuiz(){
+  state.answers=new Array(QUIZZES[state.currentQuiz].questions.length).fill(null);
+  renderQuestion(0);showView('quiz-view');
+}
+
+/* ====================================================
+   RENDER INTRO
+==================================================== */
+function renderIntro(quizId){
+  const q=QUIZZES[quizId];
+  const el=document.getElementById('intro-card');
+  el.innerHTML=`
+    <div class="intro-icon" style="background:${q.gradient}">${q.icon}</div>
+    <h2>${q.title}</h2>
+    <p class="intro-sub">${q.desc}</p>
+    <div class="intro-details">
+      <div class="idet"><div class="lbl">Questions</div><div class="val">${q.questions.length}</div></div>
+      <div class="idet"><div class="lbl">Duration</div><div class="val">${q.time}</div></div>
+      <div class="idet"><div class="lbl">Format</div><div class="val">${q.qtype==='ab'?'A or B':q.qtype.includes('5')?'1–5 Scale':'Scale'}</div></div>
+    </div>
+    ${q.warning?`<div class="warn-box">${q.warning}</div>`:''}
+    <div class="intro-panel-box">
+      <div class="intro-panel-lbl">Possible Results You Might Discover</div>
+      <div class="poss-tags">${q.possibleResults.map(r=>`<span class="poss-tag">${r}</span>`).join('')}</div>
+    </div>
+    <button class="start-btn" style="background:${q.gradient}" onclick="beginQuiz()">Begin Assessment →</button>
+  `;
+}
+
+/* ====================================================
+   RENDER QUESTION
+==================================================== */
+function renderQuestion(idx){
+  const qz=QUIZZES[state.currentQuiz];
+  const q=qz.questions[idx];
+  const total=qz.questions.length;
+  const pct=Math.round((idx/total)*100);
+  const selClass=state.currentQuiz;
+
+  document.getElementById('q-title-sm').textContent=qz.shortTitle;
+  document.getElementById('q-count').textContent=`${idx+1} / ${total}`;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-fill').style.background=qz.gradient;
+  document.getElementById('q-num').textContent=`Question ${idx+1}`;
+  document.getElementById('q-text').textContent=q.t;
+
+  const optsEl=document.getElementById('q-opts');
+  optsEl.innerHTML='';
+
+  if(qz.qtype==='ab'){
+    const ab=document.createElement('div');
+    ab.className='ab-opts';
+    ['A','B'].forEach(opt=>{
+      const btn=document.createElement('button');
+      btn.className='ab';
+      const lbl=document.createElement('span');
+      lbl.className='abl';lbl.textContent=opt;
+      const txt=document.createTextNode(opt==='A'?q.a:q.b);
+      btn.appendChild(lbl);btn.appendChild(txt);
+      if(state.answers[idx]===opt)btn.classList.add(`sel-${selClass}`);
+      btn.onclick=()=>selectAB(opt,btn,ab,idx);
+      ab.appendChild(btn);
+    });
+    optsEl.appendChild(ab);
+  } else {
+    const labels=qz.labels;
+    const isFreq=qz.qtype==='likert5';
+    const nums=isFreq?[0,1,2,3,4]:[1,2,3,4,5];
+    const scale=document.createElement('div');
+    scale.className='likert';
+    nums.forEach((n,i)=>{
+      const btn=document.createElement('button');
+      btn.className='lbtn';
+      const ns=document.createElement('span');ns.className='ln';ns.textContent=n;
+      const ls=document.createElement('span');ls.className='ll';ls.textContent=(labels[i]||'').replace('\n',' ');
+      btn.appendChild(ns);btn.appendChild(ls);
+      if(state.answers[idx]===n)btn.classList.add(`sel-${selClass}`);
+      btn.onclick=()=>selectLikert(n,btn,scale,idx);
+      scale.appendChild(btn);
+    });
+    optsEl.appendChild(scale);
+  }
+
+  const backBtn=document.getElementById('q-back');
+  const nextBtn=document.getElementById('q-next');
+  backBtn.style.display=idx===0?'none':'inline-block';
+  nextBtn.disabled=state.answers[idx]===null||state.answers[idx]===undefined;
+  nextBtn.textContent=idx===total-1?'See My Results →':'Next →';
+  nextBtn.style.background=qz.gradient;
+
+  const area=document.getElementById('q-area');
+  area.style.animation='none';area.offsetHeight;area.style.animation='slideR 0.35s ease forwards';
+}
+
+function selectLikert(val,btn,container,idx){
+  container.querySelectorAll('.lbtn').forEach(b=>b.classList.remove(`sel-${state.currentQuiz}`));
+  btn.classList.add(`sel-${state.currentQuiz}`);
+  state.answers[idx]=val;
+  document.getElementById('q-next').disabled=false;
+}
+
+function selectAB(val,btn,container,idx){
+  container.querySelectorAll('.ab').forEach(b=>b.classList.remove(`sel-${state.currentQuiz}`));
+  btn.classList.add(`sel-${state.currentQuiz}`);
+  state.answers[idx]=val;
+  document.getElementById('q-next').disabled=false;
+}
+
+function nextQ(){
+  const total=QUIZZES[state.currentQuiz].questions.length;
+  if(state.answers[state.currentQ]===null||state.answers[state.currentQ]===undefined)return;
+  if(state.currentQ<total-1){state.currentQ++;renderQuestion(state.currentQ);}
+  else{showResults();}
+}
+
+function prevQ(){
+  if(state.currentQ>0){state.currentQ--;renderQuestion(state.currentQ);}
+}
+
+/* ====================================================
+   SHOW RESULTS
+==================================================== */
+function showResults(){
+  const qz=QUIZZES[state.currentQuiz];
+  const calc=qz.calculate(state.answers);
+  document.getElementById('results-content').innerHTML=buildResultsHTML(state.currentQuiz,qz,calc);
+  showView('results-view');
+}
+
+function buildResultsHTML(quizId,qz,calc){
+  if(quizId==='trauma')return buildTraumaResults(qz,calc);
+  if(quizId==='love')return buildLoveResults(qz,calc);
+  if(quizId==='mbti')return buildMBTIResults(qz,calc);
+  if(quizId==='ocean')return buildOceanResults(qz,calc);
+  if(quizId==='compat')return buildCompatResults(qz,calc);
+  return '';
+}
+
+/* ====================================================
+   TRAUMA RESULTS
+==================================================== */
+function buildTraumaResults(qz,calc){
+  const pKey=qz.getProfile(calc.pct);
+  const p=TRAUMA_PROFILES[pKey];
+  const catNames={pa:'Physical Abuse',ea:'Emotional Abuse',sa:'Sexual Abuse',pn:'Physical Neglect',en:'Emotional Neglect',dv:'Domestic Violence',mi:'Household Mental Illness',su:'Substance Abuse',pl:'Parental Loss/Separation'};
+  const catScores={};const catMax={};
+  qz.questions.forEach((q,i)=>{
+    if(!catScores[q.cat]){catScores[q.cat]=0;catMax[q.cat]=0;}
+    catScores[q.cat]+=(state.answers[i]||0);catMax[q.cat]+=4;
+  });
+  return `
+  <div class="res-hero fade-up" style="--qg:${qz.gradient}">
+    <div class="res-badge" style="background:${qz.badgeBg};color:${qz.badgeColor}">${qz.badge}</div>
+    <div class="res-icon">${p.emoji}</div>
+    <h1 class="res-type">${p.name}</h1>
+    <p class="res-tagline">${p.tagline}</p>
+    <div class="score-ring-wrap"><div style="position:relative;width:148px;height:148px">
+      <svg width="148" height="148" style="transform:rotate(-90deg)">
+        <circle cx="74" cy="74" r="58" fill="none" stroke="var(--border)" stroke-width="10"/>
+        <circle cx="74" cy="74" r="58" fill="none" stroke="url(#tg)" stroke-width="10"
+          stroke-dasharray="${2*Math.PI*58}" stroke-dashoffset="${2*Math.PI*58*(1-calc.pct/100)}" stroke-linecap="round"/>
+        <defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="${qz.color}"/><stop offset="100%" stop-color="${qz.color2}"/></linearGradient></defs>
+      </svg>
+      <div class="ring-txt"><span class="ring-num" style="background:${qz.gradient};-webkit-background-clip:text;-webkit-text-fill-color:transparent">${calc.pct}%</span><span class="ring-lbl">Impact Score</span></div>
+    </div></div>
+  </div>
+  <div class="res-wrap">
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">📖</span> Your Profile</h3>
+      <p style="color:var(--muted);line-height:1.75;font-size:0.93rem">${p.desc}</p>
+      <div style="margin-top:18px;padding:16px;background:var(--bg2);border-radius:11px;border-left:3px solid ${qz.color}">
+        <p style="font-size:0.86rem;color:var(--muted);line-height:1.65"><strong style="color:${qz.color}">Key Insight:</strong> ${p.insight}</p>
+      </div>
+    </div>
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">📊</span> Area Breakdown</h3>
+      <div class="dim-bars">
+        ${Object.entries(catScores).map(([k,v])=>{const pc=Math.round((v/catMax[k])*100);return `<div class="dim-row"><span class="dim-name">${catNames[k]||k}</span><div class="dim-bar"><div class="dim-fill" style="width:${pc}%;background:${qz.gradient}"></div></div><span class="dim-pct">${pc}%</span></div>`;}).join('')}
+      </div>
+    </div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">💪</span> Your Strengths</h3><div class="tags">${p.strengths.map(s=>`<span class="tag">✓ ${s}</span>`).join('')}</div></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">🔍</span> Patterns to Explore</h3><div class="tags">${p.patterns.map(s=>`<span class="tag">→ ${s}</span>`).join('')}</div></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">💞</span> How This Shows Up in Relationships</h3><p style="color:var(--muted);line-height:1.75;font-size:0.91rem">${p.relationships}</p></div>
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">🗺</span> Your Healing & Growth Roadmap</h3>
+      <div class="steps">${p.steps.map((s,i)=>`<div class="step"><div class="snum" style="background:${qz.gradient}">${i+1}</div><div class="scont"><h4>${s.title}</h4><p>${s.desc}</p></div></div>`).join('')}</div>
+    </div>
+    <div class="res-sec fade-up" style="--acc:${qz.color}">
+      <h3><span class="sec-icon">🌟</span> Affirmations for Your Journey</h3>
+      <div class="affirm-list">${p.affirmations.map(a=>`<div class="affirm-item" style="border-left-color:${qz.color}">"${a}"</div>`).join('')}</div>
+    </div>
+    ${buildAIBox(qz)}
+    <div class="action-btns">
+      <button class="btn-p" style="background:${qz.gradient}" onclick="showHome()">Try Another Quiz</button>
+      <button class="btn-s" onclick="startQuiz('trauma')">Retake Quiz</button>
+    </div>
+    <p style="text-align:center;color:var(--dim);font-size:0.78rem;margin-top:22px;line-height:1.6">For educational purposes only. Not a clinical diagnosis. Please consult a qualified mental health professional for support.</p>
+  </div>`;
+}
+
+/* ====================================================
+   LOVE RESULTS
+==================================================== */
+function buildLoveResults(qz,calc){
+  const p=LOVE_PROFILES[calc.primary];
+  const sp=LOVE_PROFILES[calc.secondary];
+  const langNames={WA:'Words of Affirmation',AS:'Acts of Service',RG:'Receiving Gifts',QT:'Quality Time',PT:'Physical Touch'};
+  const maxPossible=8*5;
+  return `
+  <div class="res-hero fade-up" style="--qg:${qz.gradient}">
+    <div class="res-badge" style="background:${qz.badgeBg};color:${qz.badgeColor}">${qz.badge}</div>
+    <div class="res-icon">${p.emoji}</div>
+    <h1 class="res-type">${p.name}</h1>
+    <p class="res-tagline">${p.tagline}</p>
+  </div>
+  <div class="res-wrap">
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">📊</span> Your Love Language Scores</h3>
+      <div class="dim-bars">
+        ${calc.sorted.map(([k,v])=>`<div class="dim-row"><span class="dim-name">${langNames[k]||k} ${k===calc.primary?'⭐':k===calc.secondary?'★':''}</span><div class="dim-bar"><div class="dim-fill" style="width:${Math.round((v/maxPossible)*100)}%;background:${qz.gradient}"></div></div><span class="dim-pct">${Math.round((v/maxPossible)*100)}%</span></div>`).join('')}
+      </div>
+      <p style="margin-top:14px;font-size:0.81rem;color:var(--dim)">⭐ Primary  ·  ★ Secondary</p>
+    </div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">📖</span> Your Primary Language: ${p.name}</h3><p style="color:var(--muted);line-height:1.75;font-size:0.93rem">${p.desc}</p></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">💛</span> Secondary Language: ${sp.name} ${sp.emoji}</h3><p style="color:var(--muted);line-height:1.75;font-size:0.91rem">${sp.desc}</p></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">✨</span> What Fills Your Tank</h3><div class="tags">${p.fills.map(f=>`<span class="tag">💚 ${f}</span>`).join('')}</div></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">⚡</span> What Drains You</h3><div class="tags">${p.drains.map(d=>`<span class="tag">🔴 ${d}</span>`).join('')}</div></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">💑</span> In Relationships</h3><p style="color:var(--muted);line-height:1.75;font-size:0.91rem">${p.relationships}</p></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">🏆</span> Where You Naturally Thrive</h3><div class="tags">${p.career.map(c=>`<span class="tag">→ ${c}</span>`).join('')}</div></div>
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">🗺</span> Your Love Language Growth Roadmap</h3>
+      <div class="steps">${p.steps.map((s,i)=>`<div class="step"><div class="snum" style="background:${qz.gradient}">${i+1}</div><div class="scont"><h4>${s.title}</h4><p>${s.desc}</p></div></div>`).join('')}</div>
+    </div>
+    <div class="res-sec fade-up" style="--acc:${qz.color}">
+      <h3><span class="sec-icon">🌟</span> Affirmations</h3>
+      <div class="affirm-list">${p.affirmations.map(a=>`<div class="affirm-item" style="border-left-color:${qz.color}">"${a}"</div>`).join('')}</div>
+    </div>
+    ${buildAIBox(qz)}
+    <div class="action-btns">
+      <button class="btn-p" style="background:${qz.gradient}" onclick="showHome()">Try Another Quiz</button>
+      <button class="btn-s" onclick="startQuiz('love')">Retake Quiz</button>
+    </div>
+  </div>`;
+}
+
+/* ====================================================
+   MBTI RESULTS
+==================================================== */
+function buildMBTIResults(qz,calc){
+  const p=MBTI_PROFILES[calc.type];
+  if(!p)return`<div class="res-wrap"><p>Type: ${calc.type}</p></div>`;
+  const dims=[
+    {lbl:'Energy',poles:['E — Extraversion','I — Introversion'],pct:calc.ei,strong:calc.E>=calc.I?'E':'I'},
+    {lbl:'Information',poles:['S — Sensing','N — Intuition'],pct:calc.sn,strong:calc.S>=calc.N?'S':'N'},
+    {lbl:'Decisions',poles:['T — Thinking','F — Feeling'],pct:calc.tf,strong:calc.T>=calc.F?'T':'F'},
+    {lbl:'Lifestyle',poles:['J — Judging','P — Perceiving'],pct:calc.jp,strong:calc.J>=calc.P?'J':'P'},
+  ];
+  return `
+  <div class="res-hero fade-up" style="--qg:${qz.gradient}">
+    <div class="res-badge" style="background:${qz.badgeBg};color:${qz.badgeColor}">${qz.badge}</div>
+    <div class="res-icon">${p.emoji}</div>
+    <h1 class="res-type">${calc.type} — ${p.name}</h1>
+    <p class="res-tagline">${p.tagline}</p>
+  </div>
+  <div class="res-wrap">
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">🧬</span> Your Four Cognitive Dimensions</h3>
+      <div class="mbti-quad">
+        ${dims.map(d=>`<div class="mbti-dim">
+          <div class="mbti-dim-lbl">${d.lbl}</div>
+          <div class="mbti-bar-wrap"><div class="mbti-bar-fill" style="width:${d.pct}%;background:${qz.gradient}"></div></div>
+          <div class="mbti-poles"><span style="color:${d.pct>=50?qz.color:'var(--dim)'}">${d.poles[0]}</span><span style="color:${d.pct<50?qz.color:'var(--dim)'}">${d.poles[1]}</span></div>
+        </div>`).join('')}
+      </div>
+    </div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">📖</span> Your Personality Profile</h3><p style="color:var(--muted);line-height:1.75;font-size:0.93rem">${p.desc}</p></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">💪</span> Core Strengths</h3><div class="tags">${p.strengths.map(s=>`<span class="tag">✓ ${s}</span>`).join('')}</div></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">🔍</span> Blind Spots</h3><div class="tags">${p.blindspots.map(s=>`<span class="tag">→ ${s}</span>`).join('')}</div></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">💞</span> In Relationships</h3><p style="color:var(--muted);line-height:1.75;font-size:0.91rem">${p.relationships}</p></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">🏆</span> Natural Career Fits</h3><div class="tags">${p.careers.map(c=>`<span class="tag">→ ${c}</span>`).join('')}</div></div>
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">🗺</span> Your Growth Roadmap</h3>
+      <div class="steps">${p.steps.map((s,i)=>`<div class="step"><div class="snum" style="background:${qz.gradient}">${i+1}</div><div class="scont"><h4>${s.title}</h4><p>${s.desc}</p></div></div>`).join('')}</div>
+    </div>
+    ${buildAIBox(qz)}
+    <div class="action-btns">
+      <button class="btn-p" style="background:${qz.gradient}" onclick="showHome()">Try Another Quiz</button>
+      <button class="btn-s" onclick="startQuiz('mbti')">Retake Quiz</button>
+    </div>
+  </div>`;
+}
+
+/* ====================================================
+   OCEAN RESULTS
+==================================================== */
+function buildOceanResults(qz,calc){
+  const traitData={
+    O:{name:'Openness',color:'#a78bfa',desc:p=>p>=70?'You are highly open — imaginative, creative, and deeply curious. You seek novelty, love abstract thinking, and find conventional approaches limiting.':p>=40?'You balance curiosity with practicality. You enjoy new experiences in your domains of interest while valuing proven approaches in others.':'You are more conventional and practical. Concrete reality is more compelling to you than abstract speculation. You value tradition and proven methods.'},
+    C:{name:'Conscientiousness',color:'#38bdf8',desc:p=>p>=70?'You are highly conscientious — organized, reliable, and driven. You set high standards, plan carefully, and follow through with remarkable consistency.':p>=40?'You are generally organized and dependable while enjoying some flexibility and spontaneity in your daily approach.':'You prefer flexibility and spontaneity. Structure can feel restrictive, and you thrive with freedom to improvise and respond to life as it unfolds.'},
+    E:{name:'Extraversion',color:'#f472b6',desc:p=>p>=70?'You are highly extraverted — energized by people, socially confident, and naturally expressive and enthusiastic. You bring vibrant energy to every room.':p>=40?'You are moderately extraverted — comfortable in both social and solitary settings, adapting fluidly depending on context.':'You are more introverted — preferring depth over breadth in relationships and recharging through solitude and quiet reflection.'},
+    A:{name:'Agreeableness',color:'#6ee7b7',desc:p=>p>=70?'You are highly agreeable — genuinely warm, cooperative, and deeply empathetic. You prioritize harmony and others\' well-being.':p>=40?'You balance warmth with assertiveness — generally cooperative while able to push back when principles are at stake.':'You are more analytically direct. You prioritize honesty and logic over social harmony and are comfortable with competitive dynamics.'},
+    N:{name:'Neuroticism',color:'#fcd34d',desc:p=>p>=70?'You experience emotions intensely and process the world with deep sensitivity. Stress, anxiety, and self-doubt surface frequently — and this often pairs with high empathy and creative depth.':p>=40?'You handle most situations effectively but have specific areas where stress or emotional turbulence surfaces. Generally stable with some vulnerable areas.':'You are emotionally resilient and stable. You handle stress effectively, recover quickly from setbacks, and maintain consistent equilibrium.'},
+  };
+  const traitGrowth={
+    O:{high:['Channel creativity into consistent, completed output','Ground imaginative thinking with practical deadlines','Practice embodied presence — get out of your head and into your body'],low:['Try one completely new experience per month, no pressure to love it','Experiment with creative pursuits without performance expectations','Read one book outside your primary domains per quarter']},
+    C:{high:['Practice "good enough to ship" to reduce perfectionist paralysis','Schedule intentional spontaneity and unstructured play weekly','Develop compassion for others\' different organizational styles'],low:['Build one anchor habit (same time daily) as a foundation','Use external systems: calendar blocking, weekly review, task lists','Connect actions to deeper values for sustained intrinsic motivation']},
+    E:{high:['Develop capacity for deep, solitary focus — your growth edge','Practice active listening before contributing your perspective','Cultivate a handful of deep one-on-one relationships alongside your wider network'],low:['Practice micro-doses of social engagement — small, low-stakes interactions','Prepare conversation topics for social situations to reduce anxiety','Allow yourself to fully recharge — your introversion is a strength']},
+    A:{high:['Practice strategic assertiveness — learn to say no early and clearly','Develop your critical thinking — not all harmony is worth preserving','Build and enforce clear personal and professional boundaries'],low:['Practice assuming positive intent before responding to friction','Develop empathy as a deliberate skill: pause before responding in conflict','Try collaborative projects — cooperation builds relational range and influence']},
+    N:{high:['Build a daily nervous system regulation practice (breathwork, movement)','Develop cognitive defusion: "I notice I\'m having the thought that..."','Consider CBT or ACT therapy — proven effective for lasting change'],low:['Develop emotional vocabulary — naming nuanced feelings expands your range','Use your stability to create safety for others who are more reactive','Use your resilience to take calculated risks others would avoid']}
+  };
+  return `
+  <div class="res-hero fade-up" style="--qg:${qz.gradient}">
+    <div class="res-badge" style="background:${qz.badgeBg};color:${qz.badgeColor}">${qz.badge}</div>
+    <div class="res-icon">🌊</div>
+    <h1 class="res-type">Your Big Five Profile</h1>
+    <p class="res-tagline">A scientifically validated map of your five core personality dimensions.</p>
+  </div>
+  <div class="res-wrap">
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">📊</span> Your OCEAN Scores</h3>
+      <div class="trait-grid">
+        ${Object.entries(calc.pcts).map(([k,v])=>`<div class="trait-it"><div class="tlbl">${traitData[k].name}</div><div class="tbar"><div class="tbar-fill" style="width:${v}%;background:${traitData[k].color}"></div></div><div class="tval" style="color:${traitData[k].color}">${v}% — ${v>=70?'High':v>=40?'Moderate':'Low'}</div></div>`).join('')}
+      </div>
+    </div>
+    ${Object.entries(calc.pcts).map(([k,v])=>`
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">🔬</span> ${traitData[k].name} — ${v>=70?'High':v>=40?'Moderate':'Low'} (${v}%)</h3>
+      <p style="color:var(--muted);line-height:1.75;font-size:0.91rem;margin-bottom:14px">${traitData[k].desc(v)}</p>
+      <div class="ibox"><h4>Growth Practices for Your Level</h4><ul>${traitGrowth[k][v>=40?'high':'low'].map(i=>`<li>${i}</li>`).join('')}</ul></div>
+    </div>`).join('')}
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">🗺</span> Your 5-Step OCEAN Growth Roadmap</h3>
+      <div class="steps">
+        ${[
+          {title:'Audit your trait-life alignment',desc:'Where do your natural OCEAN traits create friction in your career, relationships, or daily life? Where do they create ease? Map this honestly — it\'s your personal ROI analysis.'},
+          {title:'Leverage your highest traits strategically',desc:'Your top traits are your competitive advantages. Deliberately design your role, environment, and relationships to maximize the expression of your natural strengths.'},
+          {title:'Develop your lowest trait as a targeted 90-day project',desc:'Pick the ONE trait where growth would most change your life. Spend 90 days with a single, evidence-based daily practice for that trait alone.'},
+          {title:'Build environments that match your trait profile',desc:'Stop fighting your nature. High-N individuals need strong regulation systems. High-O individuals need novelty in their work. Design your environment to work WITH your profile.'},
+          {title:'Reassess annually — you are not static',desc:'Big Five traits shift over a lifetime. Conscientiousness tends to rise; neuroticism tends to fall with age and intentional work. Retake annually to track your evolution.'},
+        ].map((s,i)=>`<div class="step"><div class="snum" style="background:${qz.gradient}">${i+1}</div><div class="scont"><h4>${s.title}</h4><p>${s.desc}</p></div></div>`).join('')}
+      </div>
+    </div>
+    ${buildAIBox(qz)}
+    <div class="action-btns">
+      <button class="btn-p" style="background:${qz.gradient}" onclick="showHome()">Try Another Quiz</button>
+      <button class="btn-s" onclick="startQuiz('ocean')">Retake Quiz</button>
+    </div>
+  </div>`;
+}
+
+/* ====================================================
+   COMPAT RESULTS
+==================================================== */
+function buildCompatResults(qz,calc){
+  const pKey=calc.pct<=30?'low':calc.pct<=50?'building':calc.pct<=70?'strong':calc.pct<=89?'deep':'soulmate';
+  const p=COMPAT_PROFILES[pKey];
+  const catLabels={comm:'Communication',vals:'Values & Goals',trust:'Trust & Security',inti:'Intimacy & Connection',conf:'Conflict Resolution'};
+  return `
+  <div class="res-hero fade-up" style="--qg:${qz.gradient}">
+    <div class="res-badge" style="background:${qz.badgeBg};color:${qz.badgeColor}">${qz.badge}</div>
+    <div class="res-icon">${p.emoji}</div>
+    <h1 class="res-type">${p.name}</h1>
+    <p class="res-tagline">${p.tagline}</p>
+    <div class="score-ring-wrap"><div style="position:relative;width:148px;height:148px">
+      <svg width="148" height="148" style="transform:rotate(-90deg)">
+        <circle cx="74" cy="74" r="58" fill="none" stroke="var(--border)" stroke-width="10"/>
+        <circle cx="74" cy="74" r="58" fill="none" stroke="url(#cg)" stroke-width="10"
+          stroke-dasharray="${2*Math.PI*58}" stroke-dashoffset="${2*Math.PI*58*(1-calc.pct/100)}" stroke-linecap="round"/>
+        <defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="${qz.color}"/><stop offset="100%" stop-color="${qz.color2}"/></linearGradient></defs>
+      </svg>
+      <div class="ring-txt"><span class="ring-num" style="background:${qz.gradient};-webkit-background-clip:text;-webkit-text-fill-color:transparent">${calc.pct}%</span><span class="ring-lbl">Compatibility</span></div>
+    </div></div>
+  </div>
+  <div class="res-wrap">
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">📊</span> Pillar Breakdown</h3>
+      <div class="dim-bars">
+        ${Object.entries(calc.catPcts).map(([k,v])=>`<div class="dim-row"><span class="dim-name">${catLabels[k]||k}</span><div class="dim-bar"><div class="dim-fill" style="width:${v}%;background:${qz.gradient}"></div></div><span class="dim-pct">${v}%</span></div>`).join('')}
+      </div>
+    </div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">📖</span> Your Relationship Assessment</h3><p style="color:var(--muted);line-height:1.75;font-size:0.93rem">${p.desc}</p></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">💪</span> Relationship Strengths</h3><div class="tags">${p.strengths.map(s=>`<span class="tag">✓ ${s}</span>`).join('')}</div></div>
+    <div class="res-sec fade-up"><h3><span class="sec-icon">🔍</span> Areas Needing Attention</h3><div class="tags">${p.areas.map(a=>`<span class="tag">→ ${a}</span>`).join('')}</div></div>
+    <div class="res-sec fade-up">
+      <h3><span class="sec-icon">🗺</span> Your Relationship Growth Roadmap</h3>
+      <div class="steps">${p.steps.map((s,i)=>`<div class="step"><div class="snum" style="background:${qz.gradient}">${i+1}</div><div class="scont"><h4>${s.title}</h4><p>${s.desc}</p></div></div>`).join('')}</div>
+    </div>
+    ${buildAIBox(qz)}
+    <div class="action-btns">
+      <button class="btn-p" style="background:${qz.gradient}" onclick="showHome()">Try Another Quiz</button>
+      <button class="btn-s" onclick="startQuiz('compat')">Retake Quiz</button>
+    </div>
+    <p style="text-align:center;color:var(--dim);font-size:0.78rem;margin-top:22px;line-height:1.6">This assessment reflects a self-reported snapshot. All relationships benefit from professional support at any stage.</p>
+  </div>`;
+}
+
+/* ====================================================
+   AI BOX
+==================================================== */
+function buildAIBox(qz){
+  return `
+  <div class="ai-box">
+    <h3>✨ Enhance with Claude AI</h3>
+    <p>Get a deeply personalized AI-generated analysis of your specific results. Enter your Anthropic API key below — it stays in your browser and is never stored.</p>
+    <div class="ai-input-row">
+      <input class="ai-input" id="ai-key" type="password" placeholder="sk-ant-... (your Claude API key)">
+      <button class="ai-submit" onclick="callClaudeAI('${qz.title}')">Enhance ✨</button>
+    </div>
+    <div class="ai-loading" id="ai-loading">Claude is generating your personalized analysis...</div>
+    <div class="ai-result" id="ai-result"></div>
+    <p style="font-size:0.7rem;color:var(--dim);margin-top:9px">Requires an Anthropic API key. For production use, route through a backend proxy to protect your key.</p>
+  </div>`;
+}
+
+async function callClaudeAI(quizTitle){
+  const key=document.getElementById('ai-key').value.trim();
+  if(!key){alert('Please enter your Claude API key.');return;}
+  const loading=document.getElementById('ai-loading');
+  const result=document.getElementById('ai-result');
+  loading.classList.add('show');result.classList.remove('show');
+  const qz=QUIZZES[state.currentQuiz];
+  const calc=qz.calculate(state.answers);
+  const prompt=`You are a compassionate, expert psychologist and life coach. A person has just completed the "${quizTitle}" psychology assessment. Here are their results:\n\n${JSON.stringify(calc,null,2)}\n\nProvide a warm, insightful, and deeply personalized analysis covering:\n1. A personal message to them about what their results reveal\n2. How this specific profile likely shows up in their daily life and closest relationships\n3. Their most underappreciated strength based on these results\n4. The root of their main challenge — reframed as a growth opportunity\n5. Three unconventional but highly effective strategies specifically tailored to their profile\n6. A 30-day mini-challenge to start their transformation\n\nWrite in a warm, direct, and genuinely helpful tone. Be specific to their actual scores, not generic.`;
+  try{
+    const response=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1500,messages:[{role:'user',content:prompt}]})
+    });
+    if(!response.ok){const err=await response.json();throw new Error(err.error?.message||'API error');}
+    const data=await response.json();
+    loading.classList.remove('show');
+    result.textContent=data.content[0].text;
+    result.classList.add('show');
+  }catch(e){
+    loading.classList.remove('show');
+    result.textContent=`Error: ${e.message}. Please check your API key and try again.`;
+    result.classList.add('show');
+  }
+}
+
+/* ====================================================
+   BOOT
+==================================================== */
+window.onload=()=>{
+  const saved=localStorage.getItem('ms-theme')||'dc';
+  setTheme(saved);
+  buildTypesExplorer();
+  showView('home');
+};
+</script>
+</body>
+</html>
