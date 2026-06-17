@@ -22,13 +22,25 @@ no server required. Just open the file in a browser and start exploring.
 
 ## 🧪 The Five Quizzes
 
-| Quiz | Framework | Questions | What You Discover |
-|---|---|---|---|
-| 🧩 Childhood Trauma | ACE Framework | 36 | How adverse childhood experiences shaped your nervous system, emotional patterns, and core beliefs — plus a healing roadmap |
-| 💞 Love Languages | Chapman's 5 Languages | 40 | Your primary and secondary love languages, what fills and drains you, and how to build deeply satisfying relationships |
-| 🔮 MBTI Personality | Myers-Briggs 16 Types | 48 | Your four cognitive dimensions and full personality type across all 16 possible profiles |
-| 🌊 Big Five OCEAN | Big Five / OCEAN Model | 40 | Your scientifically validated trait scores across Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism |
-| 💑 Couple Compatibility | Gottman-Informed | 35 | Your relationship's strength across five pillars: communication, values, trust, intimacy, and conflict resolution |
+Attachment Results Page — Unique Sections
+Section	What It Shows
+Score Spectrum Chart	All 4 styles with % bars + primary/secondary markers
+Core Need & Fear	The dual engine driving your attachment pattern
+Full Profile	Rich description of your dominant attachment style
+🧒 Developmental Origins	How your childhood shaped this specific pattern
+🌑 Shadow Pattern	The unconscious behaviors that harm relationships
+Compatibility Insights	How your style interacts with other styles
+Secondary Style	Your second-highest score with explanation
+🌱 Healing Pathway	What healing specifically looks like for your style
+5-Step Healing Roadmap	Concrete, evidence-based steps tailored to your pattern
+Affirmations	4 healing affirmations specific to your style
+Table
+Table
+🗂 Types Explorer — New Attachment Tab
+Full profiles for all 4 attachment styles with collapsible details
+Attachment Spectrum visual overview bar
+Compatibility Matrix — 6 common pairings explained (including the anxious-avoidant trap, earned security, etc.)
+Origins, shadow, healing pathway, compatibility notes all expandable per card
 
 ---
 
